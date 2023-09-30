@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to precinct-level political trends in Texas over the 2010s!
+I am interested in exploring data related to precinct-level political trends in Texas over the 2010s! 
