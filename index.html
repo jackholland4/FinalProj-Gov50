@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1518,7 +1518,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to precinct-level political trends in Texas over the 2010s!</p>
+<p>What marks the difference between a straight-ticket voter and a split-ticket one? Are there certain demographic variables that put people at a higher propensity to engage in split-ticket voting behavior? How does political history and incumbency status contribute to this same phenomenon?</p>
+<p>Through data visualization and cross tab analysis, I plan to find answers to these questions, as well as novel ways to demonstrate ticket splitting determinants through data. I hypothesize that many of the factors leading to the country’s most pressing political cleavages-college education, income, and political participation-all have a hand in leading voters to split their votes in an increasingly predictable fashion. I expect that heightened measures for each of these variables all contribute to ticket splitting behavior, and vice versa. The scope of this study will be limited to a few specific regions of the country, namely Connecticut, Georgia, Texas, and Wisconsin. Each of these states has a unique political history in regards to ticket splitting and aside from it.</p>
+<p>My analysis will come from the 2020 Election, senate elections, and lower state legislatures. Voters will be coded 1 for ‘ticket splitters’ and 0 for straight ticket voters. Splitting these groups and taking advantage of demogrpahic data, as well as precinct data, I hope to find meaningful differences between these groups’ composition and behavior.</p>
+<hr />
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>gov50data</span><span class='op'>)</span></span>
+<span><span class='co'>#precincts2020 &lt;- read.csv("data/PRESIDENT_precinct_general")</span></span>
+<span><span class='co'>#precincts2020</span></span></code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
