@@ -11,4 +11,49 @@ output:
 
 ## Project thoughts
 
-What marks the difference between a straight-ticket voter and a split-ticket one? Are there certain demographic variables that put people at a higher propensity to engage in split-ticket voting behavior? How does political history and incumbency status contribute to this same phenomenon? Through data visualization and cross tab analysis, I plan to find answers to these questions, as well as novel ways to demonstrate ticket splitting via data. I hypothesize that many of the factors leading to the country's most pressing political cleavages-college education, income, and political participation- all have a hand in leading voters to split their votes in an increasingly formulated fashion. I expect that heightened measures for each of these variables all contribute to ticket splitting behavior, and vice versa. The scope of this study will be limited to a few specific regions of the country, namely New England, Georgia, Texas, and Wisconsin. Each of these states has a unique political history in regards to ticket splitting and aside from it. My analysis will come from the 2020 Election, senate elections, and lower state legislatures. Voters will be coded 1 for 'ticket splitters' and 0 for straight ticket voters. Splitting these groups and taking advantage of demogrpahic data, as well as precinct data, I hope to find meaningful differences between these groups' composition and behavior.
+What marks the difference between a straight-ticket voter and a split-ticket one? Are there certain demographic variables that put people at a higher propensity to engage in split-ticket voting behavior? How does political history and incumbency status contribute to this same phenomenon?
+
+Through data visualization and cross tab analysis, I plan to find answers to these questions, as well as novel ways to demonstrate ticket splitting determinants through data. I hypothesize that many of the factors leading to the country's most pressing political cleavages-college education, income, and political participation-all have a hand in leading voters to split their votes in an increasingly predictable fashion. I expect that heightened measures for each of these variables all contribute to ticket splitting behavior, and vice versa.
+
+The scope of this study will be limited Connecticut, a state with high rates of ticket splitting between Presidential elections and those for the legislature. My analysis will come from the 2020 Election, senate elections, and the state house. Voters will be coded 1 for 'ticket splitters' and 0 for straight ticket voters. Splitting these groups and taking note of demographic data, as well as precinct data, I hope to find meaningful differences between these groups' composition and behavior.
+
+---
+
+```{r, echo=FALSE}
+library(tidyr)
+library(gov50data)
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r, echo=FALSE} 
+precincts2020 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2020precinct/PRESIDENT_precinct_general.csv")
+```
+
+```{r, echo=FALSE}
+pres16 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2016-precinct-president.csv")
+pres16ct <- pres16 |>
+  filter(state == "Connecticut") |>
+  select(county_name, county_fips, county_ansi, jurisdiction, precinct, candidate_normalized, writein, party, votes)
+```
+How did my hometown vote in the 2016 Presidential election?
+---
+This data can be useful to see how precincts with high 2016-2020 presidential swings contribute to ticket-splitting behavior, acting as their own demographic indicator.
+
+```{r, echo=FALSE}
+clinton_support <- pres16ct %>%
+  mutate(cand_edit = if_else(candidate_normalized %in% c("clinton", "trump"), candidate_normalized, "third party")) %>%
+  filter(jurisdiction == "Fairfield") %>%
+  ggplot(aes(x = cand_edit, y = votes, fill = cand_edit)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "2016 Presidential Vote Totals in Fairfield, CT",
+    x = "Candidate",
+    y = "Vote Total"
+  )
+
+clinton_support
+```
+
+
