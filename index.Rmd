@@ -24,6 +24,8 @@ library(tidyr)
 library(gov50data)
 library(dplyr)
 library(ggplot2)
+library(htmltools)
+library(patchwork)
 ```
 
 
@@ -37,23 +39,67 @@ pres16ct <- pres16 |>
   filter(state == "Connecticut") |>
   select(county_name, county_fips, county_ansi, jurisdiction, precinct, candidate_normalized, writein, party, votes)
 ```
-How did my hometown vote in the 2016 Presidential election?
+How did my hometown vote in the 2016 and 2020 Presidential elections?
 ---
-This data can be useful to see how precincts with high 2016-2020 presidential swings contribute to ticket-splitting behavior, acting as their own demographic indicator.
+- This data can be useful to see how precincts with high 2016-2020 presidential swings contribute to ticket-splitting behavior, acting as their own demographic indicator.
+- Are precincts who split their vote between Trump '16 and Biden '20 more likely to split their ticket in 2020?
 
 ```{r, echo=FALSE}
-clinton_support <- pres16ct %>%
-  mutate(cand_edit = if_else(candidate_normalized %in% c("clinton", "trump"), candidate_normalized, "third party")) %>%
-  filter(jurisdiction == "Fairfield") %>%
+#2016/20 Presidential Data in Fairfield
+clinton_support <- pres16ct |>
+  mutate(cand_edit = if_else(candidate_normalized %in% c("trump", "clinton"), candidate_normalized, "Third Party")) |>
+  filter(jurisdiction == "Fairfield")
+
+biden_retention <- precincts2020 %>%
+  filter(
+    state_po == "CT",
+    jurisdiction_name == "FAIRFIELD",
+    !is.na(party_simplified)
+  ) %>%
+  mutate(party_simplest = if_else(party_simplified %in% c("DEMOCRAT", "REPUBLICAN"), party_simplified, "OTHER"))
+```
+
+```{r,echo=FALSE}
+clinton_plot <- clinton_support |>
   ggplot(aes(x = cand_edit, y = votes, fill = cand_edit)) +
   geom_bar(stat = "identity") +
   labs(
     title = "2016 Presidential Vote Totals in Fairfield, CT",
     x = "Candidate",
     y = "Vote Total"
-  )
+  ) +
+  labs(
+        fill = "Candidate"
+  ) +
+  scale_x_discrete(labels = c(clinton = "Clinton", "trump" = "Trump")) +
+  scale_fill_manual(values = c("Third Party" = "darkgoldenrod", "clinton" = "steelblue1", "trump" = "indianred1"),
+                    labels = c("trump" = "Trump", "clinton" = "Clinton"))
 
-clinton_support
+
+biden_plot <- biden_retention |>
+  ggplot(aes(x = party_simplest, y = votes, fill = party_simplest)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "2020 Presidential Vote Totals in Fairfield, CT",
+    x = "Candidate",
+    y = "Vote Total",
+    fill = "Candidate"
+  ) +
+  scale_x_discrete(labels = c("OTHER" = "Third Party", "DEMOCRAT" = "Biden", "REPUBLICAN" = "Trump")) +
+  scale_fill_manual(values = c("OTHER" = "darkgoldenrod", "DEMOCRAT" = "steelblue1", "REPUBLICAN" = "indianred1"),
+                    labels = c("OTHER" = "Third Party", "DEMOCRAT" = "Biden", "REPUBLICAN" = "Trump")) +
+  facet_wrap(~ "Candidate", ncol = 2)
+
+#biden_plot
+clinton_plot
+biden_plot
 ```
+
+```{r, echo=FALSE, results='hide'}
+#Giving data common column and variable names
+head(clinton_support)
+head(biden_retention)
+```
+
 
 
