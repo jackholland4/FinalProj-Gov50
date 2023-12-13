@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
 author: "Jack Holland"
-description: "My final project in Gov50!"
+description: "Modeling split-ticket voting behavior through linear regression"
 output:
   distill::distill_article:
     self_contained: false
@@ -9,13 +9,21 @@ output:
 
 
 
-## Project thoughts
+Introduction
+---
 
-What marks the difference between a straight-ticket voter and a split-ticket one? Are there certain demographic variables that put people at a higher propensity to engage in split-ticket voting behavior? How does political history and incumbency status contribute to this same phenomenon?
 
-Through data visualization and cross tab analysis, I plan to find answers to these questions, as well as novel ways to demonstrate ticket splitting determinants through data. I hypothesize that many of the factors leading to the country's most pressing political cleavages-college education, income, and political participation-all have a hand in leading voters to split their votes in an increasingly predictable fashion. I expect that heightened measures for each of these variables all contribute to ticket splitting behavior, and vice versa.
+What marks the difference between a straight-ticket voter and a split-ticket one? Are there certain demographic variables that put people at a higher propensity to engage in split-ticket voting behavior? How about partisan trends and voting from past elections?
 
-The scope of this study will be limited Connecticut, a state with high rates of ticket splitting between Presidential elections and those for the legislature. My analysis will come from the 2020 Election, senate elections, and the state house. Voters will be coded 1 for 'ticket splitters' and 0 for straight ticket voters. Splitting these groups and taking note of demographic data, as well as precinct data, I hope to find meaningful differences between these groups' composition and behavior.
+Through data visualization and linear regression analysis, I plan to find answers to this phenomenon, as well as model novel ways to demonstrate ticket splitting determinants through data.
+
+The scope of this study will be focused on my hometown of Fairfield, Connecticut. My hometown and county have historically entertained high rates of ticket splitting and a strong affinity for D-R reversion down ballot. However, both of the like are quickly diversifying and the phenomenon increasingly varies by voting precinct, evidenced by a number of state house elections flipping toward Democrats in the 2020 elections.
+
+My analysis will come from the 2016 and 2020 Presidential Elections, as well as 2020 state senate and legislature elections. 2020 Census American Community Service estimates (ACS) will be used to overlay the demographic data under which voting returns are analyzed. Raw numerical voting swings will define the incidence of ticket splitting, as opposed to a binary variable or descriptor.
+
+I hypothesize that the ticket splitters of today are highly suburban, majority white, and have high levels of college attainment. These types of voters famously flocked toward Democrats in 2020, but it's not entirely clear that they have pledged their support toward down ballot Democrats just yet.
+
+Why is this data interesting to me? Across the country, the incidence of split-ticket voters is often reported to be waning. The Cook Political Report, for example, entitled its 2020 Presidential post-op article, "Lots of Turnout, Little Ticket Splitting", framing it is a moral conundrum that voters were likely to support their party in a straight-ticket fashion. Instead I hope to counter the common notion that the decrease in swing/split ticket districts is a product of hyper-polarization or gerrymandering. I hope to offer clarity, through my data, that this phenomenon is simply an evolution of voter behavior, as opposed to a development of recent worrisome polarization.
 
 ---
 
@@ -27,25 +35,39 @@ library(ggplot2)
 library(htmltools)
 library(patchwork)
 ```
+The Data
+---
 
+My elections data is sourced form the Harvard Dataverse project, a database used across the social sciences and not limited to Harvard affiliates. It includes three csv files; the 2016 and 2020 presidential elections, as well as 2020 down ballot elections in Fairfield. The datasets are merged by precinct to give a full record of their voting history. The demogrpahic data used in this study is sourced from the American Community Survey, a study conducted by US Census which took place in 2020, not long before the Presidential Election.
 
-```{r, echo=FALSE} 
+Though the elections data were sourced similarly, the data presented in each of the csv files was not entirely comparable, and required a good deal of tidying and mutating to reach a state in which the returns could be joined.
+
+Coding voters as 'straight ticket' versus 'split ticket' is a tedious endeavor, especially when comparing between more than two political contests. It is impossible to determine whether a voter that flipped from a presidential to comptroller election is the same one that flipped from a presidential to congressional election. If not, we'd like to make them down as two voters. However, precinct returns do not give us this kind of detail. Thus, a mean swing of down ballot races will serve to calculate the incidence of ticket splitting.
+
+```{r} 
+#Biden 2020 Numbers
 precincts2020 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2020precinct/PRESIDENT_precinct_general.csv")
 ```
 
-```{r, echo=FALSE}
+```{r}
+#Clinton 2016 Numbers
 pres16 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2016-precinct-president.csv")
 pres16ct <- pres16 |>
   filter(state == "Connecticut") |>
   select(county_name, county_fips, county_ansi, jurisdiction, precinct, candidate_normalized, writein, party, votes)
 ```
-How did my hometown vote in the 2016 and 2020 Presidential elections?
----
-- This data can be useful to see how precincts with high 2016-2020 presidential swings contribute to ticket-splitting behavior, acting as their own demographic indicator.
-- Are precincts who split their vote between Trump '16 and Biden '20 more likely to split their ticket in 2020?
 
-```{r, echo=FALSE}
-#2016/20 Presidential Data in Fairfield
+```{r}
+#Fairfield, CT local and state returns
+
+```
+
+```{r}
+#ACS estimates by precinct
+```
+
+```{r}
+#Tidying Datasets for Plotting Purposes
 clinton_support <- pres16ct |>
   mutate(cand_edit = if_else(candidate_normalized %in% c("trump", "clinton"), candidate_normalized, "Third Party")) |>
   filter(jurisdiction == "Fairfield")
@@ -59,7 +81,29 @@ biden_retention <- precincts2020 %>%
   mutate(party_simplest = if_else(party_simplified %in% c("DEMOCRAT", "REPUBLICAN"), party_simplified, "OTHER"))
 ```
 
-```{r,echo=FALSE}
+```{r, results='hide'}
+#Giving data common column and variable names for Joining
+clinton_support
+biden_retention |>
+  mutate(precinct_amended = case_when(
+    precinct == "DISTRICT 1-34-DWIGHT SCHOOL" ~ "Dwight School",
+    precinct == "DISTRICT 10-32-MILL HILL SCHOOL" ~ "Mill Hill School",
+    precinct == "DISTRICT 2-34-ST PIUS SCHOOL" ~ "St Pius School",
+    precinct == "DISTRICT 3-32-FAIRFIELD WOODS MIDDLE SCHOOL" ~ "Fairfield Woods Middle School",
+    precinct == "DISTRICT 4-33-STRATFIELD SCHOOL" ~ "Stratfield School",
+    precinct == "DISTRICT 5-33-FAIRFIELD WARDE HIGH SCHOOL" ~ "Fairfield Warde High School",
+    precinct == "DISTRICT 6-33-MCKINLEY SCHOOL" ~ "Mckinley School",
+    precinct == "DISTRICT 7-33-HOLLAND HILL SCHOOL" ~ "Holland Hill School",
+    precinct == "DISTRICT 8-32-FAIRFIELD LUDLOWE HIGH SCHOOL" ~ "Fairfield Ludlowe High School",
+    precinct == "DISTRICT 9-32-SHERMAN SCHOOL" ~ "Sherman School",
+    TRUE ~ precinct)) |>
+  select(-precinct)
+```
+
+The Results
+---
+
+```{r}
 clinton_plot <- clinton_support |>
   ggplot(aes(x = cand_edit, y = votes, fill = cand_edit)) +
   geom_bar(stat = "identity") +
@@ -94,12 +138,8 @@ biden_plot <- biden_retention |>
 clinton_plot
 biden_plot
 ```
-
-```{r, echo=FALSE, results='hide'}
-#Giving data common column and variable names
-head(clinton_support)
-head(biden_retention)
-```
+Conclusion
+---
 
 
 
