@@ -43,12 +43,11 @@ Though the elections data were sourced similarly, the data presented in each of 
 
 Coding voters as 'partisans' versus 'swing voters' is a tedious endeavor, especially when comparing between more than two political contests. Precinct data can give us a view of a specific population, but making generalizations down to the individual voter is impossible, and not the point of the study. Instead, I am looking to observe voting determinants within the context of a town and its distinct communities.
 
-```{r} 
-#Biden 2020 Numbers
-precincts2020 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2020precinct/PRESIDENT_precinct_general.csv")
-```
 
 ```{r}
+#Biden 2020 Numbers
+precincts2020 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2020precinct/PRESIDENT_precinct_general.csv")
+
 #Clinton 2016 Numbers
 pres16 <- read.csv("/Users/jackholland/Downloads/School/GOV50/Datasets/2016-precinct-president.csv")
 pres16ct <- pres16 |>
@@ -58,10 +57,13 @@ pres16ct <- pres16 |>
 
 ```{r}
 #ACS estimates by precinct
+acs2020 <- read.csv("/Users/jackholland/Downloads/ACS2020.csv")
 ```
 
+___
+
 ```{r}
-#Tidying Datasets for Plotting Purposes
+#Tidying election datasets for plotting purposes
 clinton_support <- pres16ct |>
   mutate(cand_edit = if_else(candidate_normalized %in% c("trump", "clinton"), candidate_normalized, "Third Party")) |>
   filter(jurisdiction == "Fairfield")
@@ -76,26 +78,71 @@ biden_retention <- precincts2020 %>%
 ```
 
 
-
-```{r, results='hide'}
-#Renaming data and column names for Joining
-clinton_support |>
+```{r, echo= FALSE, results='hide'}
+#Renaming data and column names for joining
+clinton_support <- clinton_support |>
   mutate(precinct_amended = precinct)
-biden_retention |>
-  mutate(precinct_amended = case_when(
+
+biden_retention <- biden_retention |>
+  mutate(precinct = case_when(
     precinct == "DISTRICT 1-34-DWIGHT SCHOOL" ~ "Dwight School",
     precinct == "DISTRICT 10-32-MILL HILL SCHOOL" ~ "Mill Hill School",
     precinct == "DISTRICT 2-34-ST PIUS SCHOOL" ~ "St Pius School",
-    precinct == "DISTRICT 3-32-FAIRFIELD WOODS MIDDLE SCHOOL" ~ "Fairfield Woods Middle School",
     precinct == "DISTRICT 4-33-STRATFIELD SCHOOL" ~ "Stratfield School",
     precinct == "DISTRICT 5-33-FAIRFIELD WARDE HIGH SCHOOL" ~ "Fairfield Warde High School",
     precinct == "DISTRICT 6-33-MCKINLEY SCHOOL" ~ "Mckinley School",
     precinct == "DISTRICT 7-33-HOLLAND HILL SCHOOL" ~ "Holland Hill School",
     precinct == "DISTRICT 8-32-FAIRFIELD LUDLOWE HIGH SCHOOL" ~ "Fairfield Ludlowe High School",
     precinct == "DISTRICT 9-32-SHERMAN SCHOOL" ~ "Sherman School",
-    TRUE ~ precinct)) |>
-  select(-precinct)
+    TRUE ~ "Fairfield Woods Middle School"))
 ```
+
+```{r, results='hide'}
+#Now, pivoting the tables to compare swing data
+clinton_returns <- clinton_support |>
+  group_by(precinct, cand_edit) |>
+  summarize(vote_totals = sum(votes)) |>
+  pivot_wider(
+    names_from = cand_edit,
+    values_from = vote_totals
+  )
+
+biden_returns <- biden_retention |>
+  group_by(precinct, candidate) |>
+  summarize(vote_totals = sum(votes)) |>
+  pivot_wider(
+    names_from = candidate,
+    values_from = vote_totals
+  )
+```
+
+```{r}
+#Merging the Datasets...
+composite_returns <- clinton_returns |>
+  left_join(biden_returns, by = "precinct")
+knitr::kable(composite_returns)
+```
+
+And finally, our dependent variable... presidential swings by precinct:
+
+```{r}
+composite_plot <- composite_returns |>
+  mutate(comp_swing = (`JOSEPH R BIDEN` / (`JOSEPH R BIDEN` / `DONALD J TRUMP`) - (`clinton` / (`clinton` * `trump`)))) |>
+  filter(!is.na(comp_swing)) |>
+  ggplot(
+    aes(x=reorder(precinct, comp_swing),
+        y =comp_swing)
+  ) +
+  geom_bar(stat = 'identity', mapping = aes(fill = comp_swing)) +
+  labs(
+    title = "2016-2020 Presidential Raw Swings",
+    x = "Precinct (School District)",
+    y = "Two Way Raw Swing (D-R)")
+print(composite_plot)
+
+```
+
+
 
 The Results
 ---

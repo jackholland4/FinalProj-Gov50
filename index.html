@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-5-2.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-6-2.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-8-2.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-5-2.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-6-2.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-8-2.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1562,12 +1562,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Biden 2020 Numbers</span></span>
-<span><span class='va'>precincts2020</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"/Users/jackholland/Downloads/School/GOV50/Datasets/2020precinct/PRESIDENT_precinct_general.csv"</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Clinton 2016 Numbers</span></span>
+<span><span class='va'>precincts2020</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"/Users/jackholland/Downloads/School/GOV50/Datasets/2020precinct/PRESIDENT_precinct_general.csv"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#Clinton 2016 Numbers</span></span>
 <span><span class='va'>pres16</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"/Users/jackholland/Downloads/School/GOV50/Datasets/2016-precinct-president.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>pres16ct</span> <span class='op'>&lt;-</span> <span class='va'>pres16</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>state</span> <span class='op'>==</span> <span class='st'>"Connecticut"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
@@ -1576,12 +1573,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#ACS estimates by precinct</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#ACS estimates by precinct</span></span>
+<span><span class='va'>acs2020</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"/Users/jackholland/Downloads/ACS2020.csv"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<hr />
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Tidying Datasets for Plotting Purposes</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Tidying election datasets for plotting purposes</span></span>
 <span><span class='va'>clinton_support</span> <span class='op'>&lt;-</span> <span class='va'>pres16ct</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>mutate</span><span class='op'>(</span>cand_edit <span class='op'>=</span> <span class='fu'>if_else</span><span class='op'>(</span><span class='va'>candidate_normalized</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"trump"</span>, <span class='st'>"clinton"</span><span class='op'>)</span>, <span class='va'>candidate_normalized</span>, <span class='st'>"Third Party"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>jurisdiction</span> <span class='op'>==</span> <span class='st'>"Fairfield"</span><span class='op'>)</span></span>
@@ -1596,25 +1595,204 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Renaming data and column names for Joining</span></span>
-<span><span class='va'>clinton_support</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>mutate</span><span class='op'>(</span>precinct_amended <span class='op'>=</span> <span class='va'>precinct</span><span class='op'>)</span></span>
-<span><span class='va'>biden_retention</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>mutate</span><span class='op'>(</span>precinct_amended <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span></span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 1-34-DWIGHT SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Dwight School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 10-32-MILL HILL SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Mill Hill School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 2-34-ST PIUS SCHOOL"</span> <span class='op'>~</span> <span class='st'>"St Pius School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 3-32-FAIRFIELD WOODS MIDDLE SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Fairfield Woods Middle School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 4-33-STRATFIELD SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Stratfield School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 5-33-FAIRFIELD WARDE HIGH SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Fairfield Warde High School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 6-33-MCKINLEY SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Mckinley School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 7-33-HOLLAND HILL SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Holland Hill School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 8-32-FAIRFIELD LUDLOWE HIGH SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Fairfield Ludlowe High School"</span>,</span>
-<span>    <span class='va'>precinct</span> <span class='op'>==</span> <span class='st'>"DISTRICT 9-32-SHERMAN SCHOOL"</span> <span class='op'>~</span> <span class='st'>"Sherman School"</span>,</span>
-<span>    <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='va'>precinct</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>select</span><span class='op'>(</span><span class='op'>-</span><span class='va'>precinct</span><span class='op'>)</span></span></code></pre>
+
 </div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Now, pivoting the tables to compare swing data</span></span>
+<span><span class='va'>clinton_returns</span> <span class='op'>&lt;-</span> <span class='va'>clinton_support</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>precinct</span>, <span class='va'>cand_edit</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>summarize</span><span class='op'>(</span>vote_totals <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>votes</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>pivot_wider</span><span class='op'>(</span></span>
+<span>    names_from <span class='op'>=</span> <span class='va'>cand_edit</span>,</span>
+<span>    values_from <span class='op'>=</span> <span class='va'>vote_totals</span></span>
+<span>  <span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>biden_returns</span> <span class='op'>&lt;-</span> <span class='va'>biden_retention</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>precinct</span>, <span class='va'>candidate</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>summarize</span><span class='op'>(</span>vote_totals <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>votes</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>pivot_wider</span><span class='op'>(</span></span>
+<span>    names_from <span class='op'>=</span> <span class='va'>candidate</span>,</span>
+<span>    values_from <span class='op'>=</span> <span class='va'>vote_totals</span></span>
+<span>  <span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Merging the Datasets...</span></span>
+<span><span class='va'>composite_returns</span> <span class='op'>&lt;-</span> <span class='va'>clinton_returns</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>biden_returns</span>, by <span class='op'>=</span> <span class='st'>"precinct"</span><span class='op'>)</span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>composite_returns</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 8%" />
+<col style="width: 5%" />
+<col style="width: 4%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">precinct</th>
+<th style="text-align: right;">Third Party</th>
+<th style="text-align: right;">clinton</th>
+<th style="text-align: right;">trump</th>
+<th style="text-align: right;">DONALD J TRUMP</th>
+<th style="text-align: right;">HOWIE HAWKINS</th>
+<th style="text-align: right;">JO JORGENSEN</th>
+<th style="text-align: right;">JOSEPH R BIDEN</th>
+<th style="text-align: right;">BRIAN CARROLL</th>
+<th style="text-align: right;">KANYE WEST</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Dwight School</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">1937</td>
+<td style="text-align: right;">1447</td>
+<td style="text-align: right;">1510</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">2552</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fairfield Ludlowe High School</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">1829</td>
+<td style="text-align: right;">1344</td>
+<td style="text-align: right;">1286</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">2469</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fairfield Warde High School</td>
+<td style="text-align: right;">119</td>
+<td style="text-align: right;">1647</td>
+<td style="text-align: right;">1067</td>
+<td style="text-align: right;">1131</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">2142</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fairfield Woods Middle School</td>
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">1958</td>
+<td style="text-align: right;">1525</td>
+<td style="text-align: right;">1444</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">2484</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Holland Hill School</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1437</td>
+<td style="text-align: right;">940</td>
+<td style="text-align: right;">747</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">1501</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">McKinley School</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">1498</td>
+<td style="text-align: right;">939</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mill Hill School</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">1327</td>
+<td style="text-align: right;">1289</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">2607</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sherman School</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">1230</td>
+<td style="text-align: right;">1217</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">2499</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">St Pius School</td>
+<td style="text-align: right;">116</td>
+<td style="text-align: right;">1609</td>
+<td style="text-align: right;">1215</td>
+<td style="text-align: right;">1251</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">2035</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stratfield School</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">2132</td>
+<td style="text-align: right;">1078</td>
+<td style="text-align: right;">1097</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">2652</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>And finally, our dependent variable… presidential swings by precinct:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>composite_plot</span> <span class='op'>&lt;-</span> <span class='va'>composite_returns</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>mutate</span><span class='op'>(</span>comp_swing <span class='op'>=</span> <span class='op'>(</span><span class='va'>`JOSEPH R BIDEN`</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>`JOSEPH R BIDEN`</span> <span class='op'>/</span> <span class='va'>`DONALD J TRUMP`</span><span class='op'>)</span> <span class='op'>-</span> <span class='op'>(</span><span class='va'>`clinton`</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>`clinton`</span> <span class='op'>*</span> <span class='va'>`trump`</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>comp_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ggplot</span><span class='op'>(</span></span>
+<span>    <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>precinct</span>, <span class='va'>comp_swing</span><span class='op'>)</span>,</span>
+<span>        y <span class='op'>=</span><span class='va'>comp_swing</span><span class='op'>)</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>'identity'</span>, mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>comp_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>labs</span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"2016-2020 Presidential Raw Swings"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Precinct (School District)"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Two Way Raw Swing (D-R)"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>composite_plot</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <h2 id="the-results">The Results</h2>
 <hr />
@@ -1653,7 +1831,7 @@ Firstly, a look at the townwide election results in 2016 and 2020:
 <span></span>
 <span><span class='va'>clinton_plot</span> <span class='op'>+</span> <span class='va'>biden_plot</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <h2 id="conclusion">Conclusion</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
