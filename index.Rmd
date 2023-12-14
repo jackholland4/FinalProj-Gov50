@@ -13,13 +13,13 @@ Introduction
 ---
 ___
 
-What marks the difference between a swing voter and a strictly partisan one? Are there certain demographic variables that put people at a higher propensity to change their vote choice? Through data visualization and linear regression analysis, I plan to find answers to this phenomenon, as well as model novel ways to demonstrate swing voter determinants through data.
+What marks the difference between a swing voter and a strictly partisan one? Are there certain demographic variables that put people at a higher propensity to change their vote choice? Through an observational study, I plan to find answers to this phenomenon, as well as model novel ways to demonstrate swing voter determinants through data.
 
 The scope of this study will be focused on my hometown of Fairfield, Connecticut. My hometown and county have historically entertained high rates of ticket splitting and a strong affinity for D-R reversion down ballot. However, both of the like are quickly diversifying and the phenomenon increasingly varies by voting precinct, evidenced by a number of state house elections flipping toward Democrats in the 2020 elections.
 
 My analysis will come from the 2016 and 2020 Presidential Elections. 2020 Census American Community Service estimates (ACS) will be used to overlay the demographic data under which voting returns are analyzed. Raw numerical voting swings will define the incidence 'swing voters', analyzed at the precinct level. My hometown has an interesting slew of precincts - a semi-rural one, a highly urbanized one, a college campus, etc. Underneath the hood of presidential swings, demographics tell a compelling story.
 
-I hypothesize that the swing voters of today are highly suburban, majority white, and have high levels of college attainment. These types of voters famously flocked toward Democrats in 2020, but it's not entirely clear that they have pledged their support toward down ballot Democrats just yet.
+I hypothesize that the swing voters of today are highly suburban, majority white, and have high levels of college attainment. In particular, I think that the rate of college attainment will most closely track with swings toward Democrats than other demographic factors. These types of voters famously flocked toward Democrats in 2020, but it's not entirely clear that they have pledged their support toward down ballot Democrats just yet.
 
 Why is this data interesting to me? Across the country, the incidence of swing and split-ticket voters is often reported to be waning. The Cook Political Report, for example, entitled its 2020 Presidential post-op article, "Lots of Turnout, Little Ticket Splitting", framing it is a moral conundrum that voters were likely to support their party in a straight-ticket fashion, through successive elections. I'm seeking to clarify preconceptions about the kind of people who change their vote, and what it means for future campaigns in my hometown.
 
@@ -32,6 +32,7 @@ library(dplyr)
 library(ggplot2)
 library(htmltools)
 library(patchwork)
+library(modelsummary)
 ```
 The Data
 ---
@@ -65,8 +66,8 @@ acs2020 <- read.csv("/Users/jackholland/Downloads/ACS2020.csv") |>
     "06825" = ZCTA5.06825..Total..Estimate,
     "06890" = ZCTA5.06890..Total..Estimate
   ) |>
-  slice(12:25, 37:53)
-head(acs2020)
+  slice(15:25, 37:53)
+knitr::kable(head(acs2020))
 ```
 
 ___
@@ -222,11 +223,17 @@ composite_final <- composite_returns |>
   ungroup() |>
   select(comp_swing, zip_code) |>
   group_by(zip_code) |>
-  summarise(mean_comp_swing = mean(comp_swing, na.rm = TRUE))
+  summarize(mean_comp_swing = mean(comp_swing, na.rm = TRUE))
+
+comp_plot <- composite_final |>
+  ggplot(aes(x = factor(zip_code), y = mean_comp_swing, fill=mean_comp_swing)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Mean Composite Swing by ZIP Code", x = "ZIP Code", y = "Mean Composite Swing")
+comp_plot
+
 
 composite_final$zip_code <- as.character(composite_final$zip_code)
 composite_final$zip_code <- sprintf("%05d", as.numeric(composite_final$zip_code))
-head(composite_final)
 ```
     
 ```{r}
@@ -237,7 +244,7 @@ acs_crosstab <- acs2020 |>
     names_to = "zip_code"
   ) |>
   group_by(zip_code)
-head(acs_crosstab)
+knitr::kable(head(acs_crosstab))
 acs_crosstab$zip_code <- as.character(acs_crosstab$zip_code)
 ```
 
@@ -248,20 +255,102 @@ voting_demographics <-
   left_join(acs_crosstab, composite_final, by = "zip_code") |>
   ungroup() |>
   filter(!totals == "")
-head(voting_demographics)
+knitr::kable(head(voting_demographics))
 ```
 ```{r}
-str(composite_final)
-regression <- lm(mean_comp_swing ~ Demographics, data = voting_demographics)
-
-knitr::kable(regression)
+voting_pivoted <- voting_demographics |>
+  group_by(Demographics, totals) |>
+  reframe(mean_comp_swing) |>
+  pivot_wider(
+    names_from = Demographics,
+    values_from = totals
+  ) |>
+  select(1, 11:12, 20) |>
+  rename(
+    d_swing = 1,
+    wealth_perc = 2,
+    col_attain = 3,
+    white_perc = 4)
 ```
 
+```{r}
+voting_pivoted$white_perc <- as.numeric(gsub("%", "", voting_pivoted$white_perc))
+voting_pivoted$col_attain <- as.numeric(gsub("%", "", voting_pivoted$col_attain))
+voting_pivoted$wealth_perc <- as.numeric(gsub("%", "", voting_pivoted$wealth_perc))
+
+voting_pivoted
+```
+
+```{r}
+wealth_plot <- voting_pivoted |>
+  ggplot(
+    aes(x = wealth_perc, y = d_swing, fill = d_swing)) +
+  geom_bar(stat = "identity") +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% Earning >$75,000/yr", y = "d_swing")
+
+col_plot <- voting_pivoted |>
+  ggplot(
+    aes(x = col_attain, y = d_swing, fill = d_swing)) +
+  geom_bar(stat = "identity") +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% with a Bachelor's Degree", y = "d_swing")
+
+white_plot <- voting_pivoted |>
+  ggplot(
+    aes(x = white_perc, y = d_swing, fill = d_swing)) +
+  geom_bar(stat = "identity") +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% White non-Hispanic", y = "d_swing")
+
+wealth_plot + col_plot + white_plot
+
+
+knitr::kable(voting_pivoted)
+```
+
+
+
+```{r}
+wealth_regression <- lm(d_swing ~ wealth_perc, data = voting_pivoted)
+col_regression <- lm(d_swing ~ col_attain, data = voting_pivoted)
+white_regression <- lm(d_swing ~ white_perc, data = voting_pivoted)
+composite_regression <- lm(d_swing ~ white_perc + wealth_perc, data = voting_pivoted)
+
+modelsummary::modelsummary(wealth_regression,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+modelsummary::modelsummary(col_regression,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+modelsummary::modelsummary(white_regression,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+modelsummary::modelsummary(composite_regression,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
+
+  Initially, when conjuring this model, I treated the three demographic factors as a group, and tried to fit them in the same model. I was met with an R^2 of 1.0, which was implausible considering the graphs modeled up above. Returning with three independent regressions, however, the data became more apparent, and issues of over fitting largely subsided. Still, a composite regression is included above, in spite of warnings that there existed zero degrees of freedom (fair, since there were only three measurable factors, to begin with).
+  
+  My main coefficient of interest in this study was college attainment, since popular media has framed it as a hydrogen bomb of Democratic gains and future potential. The bar graphs above, however, demonstrate that there does not exist a fair correlation between the rate of bachelor's degree attainment and Democratic shifts in Fairfield. The p-value of 0.7 negates any theory that there exists a causal interpretation between college attainment and Democratic swings. More starkly correlated was the wealth of the district and its shifts. For this measure, a p-value of 0.1 was returned, which is stronger but still weak evidence for rejecting the null hypothesis. Among these three variables, the strength of their predictive value from least to greatest is as follows: college attainment, white percentage, and wealth.
 
 
 Conclusion
 ---
 
-Swing voting, on a minute level, is indeed spurred by a specific slew of demographic factors.
+Swing voting, on a minute level, is indeed spurred by a specific slew of demographic factors, and there is limited but existent correlation between some factors, such as wealth, and recent Democratic swings in Fairfield. However, no one factor offers strong enough evidence of prediction as to reject a null hypothesis that demographics and vote share are not interrelated. That said, this observation has some merit to it, itself; at least in this instance, demographics are not destiny, and people vote with often complicated and nuanced priorities, sometimes involving their demographic background and other times not.
 
+If I were to rework this observational study, I would have sought a broader geographic base with more available demographic data. I was a real damper to this study not to be able to observe swings on the precinct level, as opposed to the ZIP code level. Perhaps if I did not have to nest the data into ZIP codes, there would be less instances of overfitting in the eventual regressions, as well as a more diverse array of swing and demographic data to model up above.
+
+I also made the mistake of ignoring possible confounders such as political history (if a population's demographics indeed imply a democratic vote gain, why should I prioritize observing republican swing voters?) and turnout (not every 'swing' voter indeed voted in 2016). Again, seeking to pull more sources of data could have reduced this confounding bias.
+
+These mistakes understood, I still enjoyed the process of getting to better know my town's geography and political nuances. I hope I can use the skills applied here to model similar phenomena in the future, within political applications and outside of them. :)
 

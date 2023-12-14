@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-5-2.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-6-2.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-8-2.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-10-1.png","index_files/figure-html5/unnamed-chunk-13-1.png","index_files/figure-html5/unnamed-chunk-15-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-5-2.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-6-2.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-8-2.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1547,10 +1547,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
 <hr />
-<p>What marks the difference between a swing voter and a strictly partisan one? Are there certain demographic variables that put people at a higher propensity to change their vote choice? Through data visualization and linear regression analysis, I plan to find answers to this phenomenon, as well as model novel ways to demonstrate swing voter determinants through data.</p>
+<p>What marks the difference between a swing voter and a strictly partisan one? Are there certain demographic variables that put people at a higher propensity to change their vote choice? Through an observational study, I plan to find answers to this phenomenon, as well as model novel ways to demonstrate swing voter determinants through data.</p>
 <p>The scope of this study will be focused on my hometown of Fairfield, Connecticut. My hometown and county have historically entertained high rates of ticket splitting and a strong affinity for D-R reversion down ballot. However, both of the like are quickly diversifying and the phenomenon increasingly varies by voting precinct, evidenced by a number of state house elections flipping toward Democrats in the 2020 elections.</p>
 <p>My analysis will come from the 2016 and 2020 Presidential Elections. 2020 Census American Community Service estimates (ACS) will be used to overlay the demographic data under which voting returns are analyzed. Raw numerical voting swings will define the incidence ‘swing voters’, analyzed at the precinct level. My hometown has an interesting slew of precincts - a semi-rural one, a highly urbanized one, a college campus, etc. Underneath the hood of presidential swings, demographics tell a compelling story.</p>
-<p>I hypothesize that the swing voters of today are highly suburban, majority white, and have high levels of college attainment. These types of voters famously flocked toward Democrats in 2020, but it’s not entirely clear that they have pledged their support toward down ballot Democrats just yet.</p>
+<p>I hypothesize that the swing voters of today are highly suburban, majority white, and have high levels of college attainment. In particular, I think that the rate of college attainment will most closely track with swings toward Democrats than other demographic factors. These types of voters famously flocked toward Democrats in 2020, but it’s not entirely clear that they have pledged their support toward down ballot Democrats just yet.</p>
 <p>Why is this data interesting to me? Across the country, the incidence of swing and split-ticket voters is often reported to be waning. The Cook Political Report, for example, entitled its 2020 Presidential post-op article, “Lots of Turnout, Little Ticket Splitting”, framing it is a moral conundrum that voters were likely to support their party in a straight-ticket fashion, through successive elections. I’m seeking to clarify preconceptions about the kind of people who change their vote, and what it means for future campaigns in my hometown.</p>
 <hr />
 <div class="layout-chunk" data-layout="l-body">
@@ -1584,16 +1584,110 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>    <span class='st'>"06825"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06825..Total..Estimate</span>,</span>
 <span>    <span class='st'>"06890"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06890..Total..Estimate</span></span>
 <span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>:</span><span class='fl'>25</span>, <span class='fl'>37</span><span class='op'>:</span><span class='fl'>53</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs2020</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>15</span><span class='op'>:</span><span class='fl'>25</span>, <span class='fl'>37</span><span class='op'>:</span><span class='fl'>53</span><span class='op'>)</span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs2020</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>                            Demographics 06824 06825 06890
-1                                    SEX                  
-2                                   Male 47.7% 49.1% 46.0%
-3                                 Female 52.3% 50.9% 54.0%
-4     RACE AND HISPANIC OR LATINO ORIGIN                  
-5                               One race 97.0% 95.1% 97.3%
-6                                  White 91.4% 86.2% 90.5%</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Demographics
+</th>
+<th style="text-align:left;">
+06824
+</th>
+<th style="text-align:left;">
+06825
+</th>
+<th style="text-align:left;">
+06890
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+    RACE AND HISPANIC OR LATINO ORIGIN
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+97.0%
+</td>
+<td style="text-align:left;">
+95.1%
+</td>
+<td style="text-align:left;">
+97.3%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            White
+</td>
+<td style="text-align:left;">
+91.4%
+</td>
+<td style="text-align:left;">
+86.2%
+</td>
+<td style="text-align:left;">
+90.5%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            Black or African American
+</td>
+<td style="text-align:left;">
+0.6%
+</td>
+<td style="text-align:left;">
+1.6%
+</td>
+<td style="text-align:left;">
+0.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            American Indian and Alaska Native
+</td>
+<td style="text-align:left;">
+0.0%
+</td>
+<td style="text-align:left;">
+0.0%
+</td>
+<td style="text-align:left;">
+0.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            Asian
+</td>
+<td style="text-align:left;">
+3.8%
+</td>
+<td style="text-align:left;">
+5.4%
+</td>
+<td style="text-align:left;">
+5.5%
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <hr />
 <div class="layout-chunk" data-layout="l-body">
@@ -1661,104 +1755,232 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span><span class='op'>(</span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>composite_returns</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 8%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 9%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;">Precinct</th>
-<th style="text-align: right;">Clinton16</th>
-<th style="text-align: right;">Trump16</th>
-<th style="text-align: right;">Trump20</th>
-<th style="text-align: right;">Biden20</th>
-<th style="text-align: right;">turnout_16</th>
-<th style="text-align: right;">turnout_20</th>
-<th style="text-align: right;">dmarg_16</th>
-<th style="text-align: right;">dmarg_20</th>
-<th style="text-align: right;">comp_swing</th>
+<tr>
+<th style="text-align:left;">
+Precinct
+</th>
+<th style="text-align:right;">
+Clinton16
+</th>
+<th style="text-align:right;">
+Trump16
+</th>
+<th style="text-align:right;">
+Trump20
+</th>
+<th style="text-align:right;">
+Biden20
+</th>
+<th style="text-align:right;">
+turnout_16
+</th>
+<th style="text-align:right;">
+turnout_20
+</th>
+<th style="text-align:right;">
+dmarg_16
+</th>
+<th style="text-align:right;">
+dmarg_20
+</th>
+<th style="text-align:right;">
+comp_swing
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Dwight School</td>
-<td style="text-align: right;">1937</td>
-<td style="text-align: right;">1447</td>
-<td style="text-align: right;">1510</td>
-<td style="text-align: right;">2552</td>
-<td style="text-align: right;">3384</td>
-<td style="text-align: right;">4062</td>
-<td style="text-align: right;">0.1447991</td>
-<td style="text-align: right;">0.2565239</td>
-<td style="text-align: right;">11.172482</td>
+<tr>
+<td style="text-align:left;">
+Dwight School
+</td>
+<td style="text-align:right;">
+1937
+</td>
+<td style="text-align:right;">
+1447
+</td>
+<td style="text-align:right;">
+1510
+</td>
+<td style="text-align:right;">
+2552
+</td>
+<td style="text-align:right;">
+3384
+</td>
+<td style="text-align:right;">
+4062
+</td>
+<td style="text-align:right;">
+0.1447991
+</td>
+<td style="text-align:right;">
+0.2565239
+</td>
+<td style="text-align:right;">
+11.172482
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Fairfield Ludlowe High School</td>
-<td style="text-align: right;">1829</td>
-<td style="text-align: right;">1344</td>
-<td style="text-align: right;">1286</td>
-<td style="text-align: right;">2469</td>
-<td style="text-align: right;">3173</td>
-<td style="text-align: right;">3755</td>
-<td style="text-align: right;">0.1528522</td>
-<td style="text-align: right;">0.3150466</td>
-<td style="text-align: right;">16.219441</td>
+<tr>
+<td style="text-align:left;">
+Fairfield Ludlowe High School
+</td>
+<td style="text-align:right;">
+1829
+</td>
+<td style="text-align:right;">
+1344
+</td>
+<td style="text-align:right;">
+1286
+</td>
+<td style="text-align:right;">
+2469
+</td>
+<td style="text-align:right;">
+3173
+</td>
+<td style="text-align:right;">
+3755
+</td>
+<td style="text-align:right;">
+0.1528522
+</td>
+<td style="text-align:right;">
+0.3150466
+</td>
+<td style="text-align:right;">
+16.219441
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Fairfield Warde High School</td>
-<td style="text-align: right;">1647</td>
-<td style="text-align: right;">1067</td>
-<td style="text-align: right;">1131</td>
-<td style="text-align: right;">2142</td>
-<td style="text-align: right;">2714</td>
-<td style="text-align: right;">3273</td>
-<td style="text-align: right;">0.2137067</td>
-<td style="text-align: right;">0.3088909</td>
-<td style="text-align: right;">9.518422</td>
+<tr>
+<td style="text-align:left;">
+Fairfield Warde High School
+</td>
+<td style="text-align:right;">
+1647
+</td>
+<td style="text-align:right;">
+1067
+</td>
+<td style="text-align:right;">
+1131
+</td>
+<td style="text-align:right;">
+2142
+</td>
+<td style="text-align:right;">
+2714
+</td>
+<td style="text-align:right;">
+3273
+</td>
+<td style="text-align:right;">
+0.2137067
+</td>
+<td style="text-align:right;">
+0.3088909
+</td>
+<td style="text-align:right;">
+9.518422
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Fairfield Woods Middle School</td>
-<td style="text-align: right;">1958</td>
-<td style="text-align: right;">1525</td>
-<td style="text-align: right;">1444</td>
-<td style="text-align: right;">2484</td>
-<td style="text-align: right;">3483</td>
-<td style="text-align: right;">3928</td>
-<td style="text-align: right;">0.1243181</td>
-<td style="text-align: right;">0.2647658</td>
-<td style="text-align: right;">14.044767</td>
+<tr>
+<td style="text-align:left;">
+Fairfield Woods Middle School
+</td>
+<td style="text-align:right;">
+1958
+</td>
+<td style="text-align:right;">
+1525
+</td>
+<td style="text-align:right;">
+1444
+</td>
+<td style="text-align:right;">
+2484
+</td>
+<td style="text-align:right;">
+3483
+</td>
+<td style="text-align:right;">
+3928
+</td>
+<td style="text-align:right;">
+0.1243181
+</td>
+<td style="text-align:right;">
+0.2647658
+</td>
+<td style="text-align:right;">
+14.044767
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Holland Hill School</td>
-<td style="text-align: right;">1437</td>
-<td style="text-align: right;">940</td>
-<td style="text-align: right;">747</td>
-<td style="text-align: right;">1501</td>
-<td style="text-align: right;">2377</td>
-<td style="text-align: right;">2248</td>
-<td style="text-align: right;">0.2090871</td>
-<td style="text-align: right;">0.3354093</td>
-<td style="text-align: right;">12.632217</td>
+<tr>
+<td style="text-align:left;">
+Holland Hill School
+</td>
+<td style="text-align:right;">
+1437
+</td>
+<td style="text-align:right;">
+940
+</td>
+<td style="text-align:right;">
+747
+</td>
+<td style="text-align:right;">
+1501
+</td>
+<td style="text-align:right;">
+2377
+</td>
+<td style="text-align:right;">
+2248
+</td>
+<td style="text-align:right;">
+0.2090871
+</td>
+<td style="text-align:right;">
+0.3354093
+</td>
+<td style="text-align:right;">
+12.632217
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">McKinley School</td>
-<td style="text-align: right;">1498</td>
-<td style="text-align: right;">939</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">2437</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0.2293804</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<tr>
+<td style="text-align:left;">
+McKinley School
+</td>
+<td style="text-align:right;">
+1498
+</td>
+<td style="text-align:right;">
+939
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2437
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.2293804
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
 </tbody>
 </table>
@@ -1798,18 +2020,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>select</span><span class='op'>(</span><span class='va'>comp_swing</span>, <span class='va'>zip_code</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>zip_code</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>summarise</span><span class='op'>(</span>mean_comp_swing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>comp_swing</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='fu'>summarize</span><span class='op'>(</span>mean_comp_swing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>comp_swing</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span></span>
-<span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"%05d"</span>, <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>comp_plot</span> <span class='op'>&lt;-</span> <span class='va'>composite_final</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>zip_code</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='va'>mean_comp_swing</span>, fill<span class='op'>=</span><span class='va'>mean_comp_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Mean Composite Swing by ZIP Code"</span>, x <span class='op'>=</span> <span class='st'>"ZIP Code"</span>, y <span class='op'>=</span> <span class='st'>"Mean Composite Swing"</span><span class='op'>)</span></span>
+<span><span class='va'>comp_plot</span></span></code></pre>
 </div>
-<pre><code># A tibble: 3 × 2
-  zip_code mean_comp_swing
-  &lt;chr&gt;              &lt;dbl&gt;
-1 06824               12.1
-2 06825               10.7
-3 06890               13.8</code></pre>
+<img src="index_files/figure-html5/unnamed-chunk-10-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span></span>
+<span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"%05d"</span>, <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1820,18 +2043,88 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>    names_to <span class='op'>=</span> <span class='st'>"zip_code"</span></span>
 <span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>zip_code</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs_crosstab</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs_crosstab</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 6 × 3
-# Groups:   zip_code [3]
-  Demographics zip_code totals 
-  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;  
-1     SEX      06824    &quot;&quot;     
-2     SEX      06825    &quot;&quot;     
-3     SEX      06890    &quot;&quot;     
-4         Male 06824    &quot;47.7%&quot;
-5         Male 06825    &quot;49.1%&quot;
-6         Male 06890    &quot;46.0%&quot;</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Demographics
+</th>
+<th style="text-align:left;">
+zip_code
+</th>
+<th style="text-align:left;">
+totals
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+    RACE AND HISPANIC OR LATINO ORIGIN
+</td>
+<td style="text-align:left;">
+06824
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+    RACE AND HISPANIC OR LATINO ORIGIN
+</td>
+<td style="text-align:left;">
+06825
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+    RACE AND HISPANIC OR LATINO ORIGIN
+</td>
+<td style="text-align:left;">
+06890
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+06824
+</td>
+<td style="text-align:left;">
+97.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+06825
+</td>
+<td style="text-align:left;">
+95.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+06890
+</td>
+<td style="text-align:left;">
+97.3%
+</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>acs_crosstab</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>acs_crosstab</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span></span></code></pre>
 </div>
@@ -1843,29 +2136,245 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>acs_crosstab</span>, <span class='va'>composite_final</span>, by <span class='op'>=</span> <span class='st'>"zip_code"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>totals</span> <span class='op'>==</span> <span class='st'>""</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>voting_demographics</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>voting_demographics</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 6 × 4
-  Demographics   zip_code totals mean_comp_swing
-  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;
-1         Male   06824    47.7%             12.1
-2         Male   06825    49.1%             10.7
-3         Male   06890    46.0%             13.8
-4         Female 06824    52.3%             12.1
-5         Female 06825    50.9%             10.7
-6         Female 06890    54.0%             13.8</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Demographics
+</th>
+<th style="text-align:left;">
+zip_code
+</th>
+<th style="text-align:left;">
+totals
+</th>
+<th style="text-align:right;">
+mean_comp_swing
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+06824
+</td>
+<td style="text-align:left;">
+97.0%
+</td>
+<td style="text-align:right;">
+12.10417
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+06825
+</td>
+<td style="text-align:left;">
+95.1%
+</td>
+<td style="text-align:right;">
+10.73534
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+        One race
+</td>
+<td style="text-align:left;">
+06890
+</td>
+<td style="text-align:left;">
+97.3%
+</td>
+<td style="text-align:right;">
+13.81751
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            White
+</td>
+<td style="text-align:left;">
+06824
+</td>
+<td style="text-align:left;">
+91.4%
+</td>
+<td style="text-align:right;">
+12.10417
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            White
+</td>
+<td style="text-align:left;">
+06825
+</td>
+<td style="text-align:left;">
+86.2%
+</td>
+<td style="text-align:right;">
+10.73534
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+            White
+</td>
+<td style="text-align:left;">
+06890
+</td>
+<td style="text-align:left;">
+90.5%
+</td>
+<td style="text-align:right;">
+13.81751
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>voting_pivoted</span> <span class='op'>&lt;-</span> <span class='va'>voting_demographics</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Demographics</span>, <span class='va'>totals</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>reframe</span><span class='op'>(</span><span class='va'>mean_comp_swing</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>pivot_wider</span><span class='op'>(</span></span>
+<span>    names_from <span class='op'>=</span> <span class='va'>Demographics</span>,</span>
+<span>    values_from <span class='op'>=</span> <span class='va'>totals</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>select</span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>11</span><span class='op'>:</span><span class='fl'>12</span>, <span class='fl'>20</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>rename</span><span class='op'>(</span></span>
+<span>    d_swing <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>    wealth_perc <span class='op'>=</span> <span class='fl'>2</span>,</span>
+<span>    col_attain <span class='op'>=</span> <span class='fl'>3</span>,</span>
+<span>    white_perc <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>tibble [3 × 2] (S3: tbl_df/tbl/data.frame)
- $ zip_code       : chr [1:3] &quot;06824&quot; &quot;06825&quot; &quot;06890&quot;
- $ mean_comp_swing: num [1:3] 12.1 10.7 13.8</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mean_comp_swing</span> <span class='op'>~</span> <span class='va'>Demographics</span>, data <span class='op'>=</span> <span class='va'>voting_demographics</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>voting_pivoted</span><span class='op'>$</span><span class='va'>white_perc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"%"</span>, <span class='st'>""</span>, <span class='va'>voting_pivoted</span><span class='op'>$</span><span class='va'>white_perc</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>voting_pivoted</span><span class='op'>$</span><span class='va'>col_attain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"%"</span>, <span class='st'>""</span>, <span class='va'>voting_pivoted</span><span class='op'>$</span><span class='va'>col_attain</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>voting_pivoted</span><span class='op'>$</span><span class='va'>wealth_perc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"%"</span>, <span class='st'>""</span>, <span class='va'>voting_pivoted</span><span class='op'>$</span><span class='va'>wealth_perc</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>regression</span>,</span>
+<span><span class='va'>voting_pivoted</span></span></code></pre>
+</div>
+<pre><code># A tibble: 3 × 4
+  d_swing wealth_perc col_attain white_perc
+    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1    10.7        33.5       34         83.6
+2    12.1        37.9       40.7       90.2
+3    13.8        47.9       37.3       89.7</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wealth_plot</span> <span class='op'>&lt;-</span> <span class='va'>voting_pivoted</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ggplot</span><span class='op'>(</span></span>
+<span>    <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>wealth_perc</span>, y <span class='op'>=</span> <span class='va'>d_swing</span>, fill <span class='op'>=</span> <span class='va'>d_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Bar Plot of d_swing vs. wealth_perc"</span>, x <span class='op'>=</span> <span class='st'>"% Earning &gt;$75,000/yr"</span>, y <span class='op'>=</span> <span class='st'>"d_swing"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>col_plot</span> <span class='op'>&lt;-</span> <span class='va'>voting_pivoted</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ggplot</span><span class='op'>(</span></span>
+<span>    <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>col_attain</span>, y <span class='op'>=</span> <span class='va'>d_swing</span>, fill <span class='op'>=</span> <span class='va'>d_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Bar Plot of d_swing vs. wealth_perc"</span>, x <span class='op'>=</span> <span class='st'>"% with a Bachelor's Degree"</span>, y <span class='op'>=</span> <span class='st'>"d_swing"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>white_plot</span> <span class='op'>&lt;-</span> <span class='va'>voting_pivoted</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ggplot</span><span class='op'>(</span></span>
+<span>    <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>white_perc</span>, y <span class='op'>=</span> <span class='va'>d_swing</span>, fill <span class='op'>=</span> <span class='va'>d_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Bar Plot of d_swing vs. wealth_perc"</span>, x <span class='op'>=</span> <span class='st'>"% White non-Hispanic"</span>, y <span class='op'>=</span> <span class='st'>"d_swing"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>wealth_plot</span> <span class='op'>+</span> <span class='va'>col_plot</span> <span class='op'>+</span> <span class='va'>white_plot</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-15-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>voting_pivoted</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+d_swing
+</th>
+<th style="text-align:right;">
+wealth_perc
+</th>
+<th style="text-align:right;">
+col_attain
+</th>
+<th style="text-align:right;">
+white_perc
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10.73534
+</td>
+<td style="text-align:right;">
+33.5
+</td>
+<td style="text-align:right;">
+34.0
+</td>
+<td style="text-align:right;">
+83.6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12.10417
+</td>
+<td style="text-align:right;">
+37.9
+</td>
+<td style="text-align:right;">
+40.7
+</td>
+<td style="text-align:right;">
+90.2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13.81751
+</td>
+<td style="text-align:right;">
+47.9
+</td>
+<td style="text-align:right;">
+37.3
+</td>
+<td style="text-align:right;">
+89.7
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>wealth_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>d_swing</span> <span class='op'>~</span> <span class='va'>wealth_perc</span>, data <span class='op'>=</span> <span class='va'>voting_pivoted</span><span class='op'>)</span></span>
+<span><span class='va'>col_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>d_swing</span> <span class='op'>~</span> <span class='va'>col_attain</span>, data <span class='op'>=</span> <span class='va'>voting_pivoted</span><span class='op'>)</span></span>
+<span><span class='va'>white_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>d_swing</span> <span class='op'>~</span> <span class='va'>white_perc</span>, data <span class='op'>=</span> <span class='va'>voting_pivoted</span><span class='op'>)</span></span>
+<span><span class='va'>composite_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>d_swing</span> <span class='op'>~</span> <span class='va'>white_perc</span> <span class='op'>+</span> <span class='va'>wealth_perc</span>, data <span class='op'>=</span> <span class='va'>voting_pivoted</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>wealth_regression</span>,</span>
 <span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
 <span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
 <span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
@@ -1886,593 +2395,43 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 (Intercept)
 </td>
 <td style="text-align:center;">
-12.219
+3.998
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 0.892
+s.e. = 1.311
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-p = &lt;0.001
+p = 0.202
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Demographics            Asian
+wealth_perc
 </td>
 <td style="text-align:center;">
-0.000
+0.207
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics            Black or African American
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics            Native Hawaiian and Other Pacific Islander
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics            Some other race
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics            White
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $1 to $9,999 or loss
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $10,000 to $14,999
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $15,000 to $24,999
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $25,000 to $34,999
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $35,000 to $49,999
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $50,000 to $64,999
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $65,000 to $74,999
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        $75,000 or more
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Bachelor’s degree
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Female
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Graduate or professional degree
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        High school graduate (includes equivalency)
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Hispanic or Latino origin (of any race)
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Less than high school graduate
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Male
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        One race
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Some college or associate’s degree
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Two or more races
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        White alone, not Hispanic or Latino
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    Population 15 years and over
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    Population 25 years and over
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.261
+s.e. = 0.033
 </td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1.5px">
-p = 1.000
+p = 0.100
 </td>
 </tr>
 <tr>
@@ -2480,7 +2439,7 @@ p = 1.000
 Num.Obs.
 </td>
 <td style="text-align:center;">
-81
+3
 </td>
 </tr>
 <tr>
@@ -2488,7 +2447,7 @@ Num.Obs.
 R2
 </td>
 <td style="text-align:center;">
-0.000
+0.976
 </td>
 </tr>
 <tr>
@@ -2496,15 +2455,253 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
-−0.481
+0.951
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>col_regression</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+4.725
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 15.534
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.812
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+col_attain
+</td>
+<td style="text-align:center;">
+0.201
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.415
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.713
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.190
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+−0.621
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>white_regression</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+−17.029
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 22.531
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.588
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+white_perc
+</td>
+<td style="text-align:center;">
+0.333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.418
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.628
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.256
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>composite_regression</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+−2.694
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+white_perc
+</td>
+<td style="text-align:center;">
+0.090
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+wealth_perc
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+0.176
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+1.000
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Initially, when conjuring this model, I treated the three demographic factors as a group, and tried to fit them in the same model. I was met with an R^2 of 1.0, which was implausible considering the graphs modeled up above. Returning with three independent regressions, however, the data became more apparent, and issues of over fitting largely subsided. Still, a composite regression is included above, in spite of warnings that there existed zero degrees of freedom (fair, since there were only three measurable factors, to begin with).</p>
+<p>My main coefficient of interest in this study was college attainment, since popular media has framed it as a hydrogen bomb of Democratic gains and future potential. The bar graphs above, however, demonstrate that there does not exist a fair correlation between the rate of bachelor’s degree attainment and Democratic shifts in Fairfield. The p-value of 0.7 negates any theory that there exists a causal interpretation between college attainment and Democratic swings. More starkly correlated was the wealth of the district and its shifts. For this measure, a p-value of 0.1 was returned, which is stronger but still weak evidence for rejecting the null hypothesis. Among these three variables, the strength of their predictive value from least to greatest is as follows: college attainment, white percentage, and wealth.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>Swing voting, on a minute level, is indeed spurred by a specific slew of demographic factors.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Swing voting, on a minute level, is indeed spurred by a specific slew of demographic factors, and there is limited but existent correlation between some factors, such as wealth, and recent Democratic swings in Fairfield. However, no one factor offers strong enough evidence of prediction as to reject a null hypothesis that demographics and vote share are not interrelated. That said, this observation has some merit to it, itself; at least in this instance, demographics are not destiny, and people vote with often complicated and nuanced priorities, sometimes involving their demographic background and other times not.</p>
+<p>If I were to rework this observational study, I would have sought a broader geographic base with more available demographic data. I was a real damper to this study not to be able to observe swings on the precinct level, as opposed to the ZIP code level. Perhaps if I did not have to nest the data into ZIP codes, there would be less instances of overfitting in the eventual regressions, as well as a more diverse array of swing and demographic data to model up above.</p>
+<p>I also made the mistake of ignoring possible confounders such as political history (if a population’s demographics indeed imply a democratic vote gain, why should I prioritize observing republican swing voters?) and turnout (not every ‘swing’ voter indeed voted in 2016). Again, seeking to pull more sources of data could have reduced this confounding bias.</p>
+<p>These mistakes understood, I still enjoyed the process of getting to better know my town’s geography and political nuances. I hope I can use the skills applied here to model similar phenomena in the future, within political applications and outside of them. :)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
