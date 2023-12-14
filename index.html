@@ -1583,135 +1583,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>    <span class='st'>"06824"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06824..Total..Estimate</span>,</span>
 <span>    <span class='st'>"06825"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06825..Total..Estimate</span>,</span>
 <span>    <span class='st'>"06890"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06890..Total..Estimate</span></span>
-<span>  <span class='op'>)</span></span>
-<span><span class='va'>acs2020</span></span></code></pre>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>:</span><span class='fl'>25</span>, <span class='fl'>37</span><span class='op'>:</span><span class='fl'>53</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs2020</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>                                                                     Demographics
-1                                                                Total population
-2                                                                             AGE
-3                                                                   Under 5 years
-4                                                                   5 to 17 years
-5                                                                  18 to 24 years
-6                                                                  25 to 44 years
-7                                                                  45 to 54 years
-8                                                                  55 to 64 years
-9                                                                  65 to 74 years
-10                                                              75 years and over
-11                                                             Median age (years)
-12                                                                            SEX
-13                                                                           Male
-14                                                                         Female
-15                                             RACE AND HISPANIC OR LATINO ORIGIN
-16                                                                       One race
-17                                                                          White
-18                                                      Black or African American
-19                                              American Indian and Alaska Native
-20                                                                          Asian
-21                                     Native Hawaiian and Other Pacific Islander
-22                                                                Some other race
-23                                                              Two or more races
-24                                        Hispanic or Latino origin (of any race)
-25                                            White alone, not Hispanic or Latino
-26                           LANGUAGE SPOKEN AT HOME AND ABILITY TO SPEAK ENGLISH
-27                                                    Population 5 years and over
-28                                              Speak language other than English
-29                                                     Speak English  &quot;very well&quot;
-30                                            Speak English less than &quot;very well&quot;
-31                                                                 MARITAL STATUS
-32                                                   Population 15 years and over
-33                                                                  Never married
-34                                                  Now married, except separated
-35                                                          Divorced or separated
-36                                                                        Widowed
-37                                                         EDUCATIONAL ATTAINMENT
-38                                                   Population 25 years and over
-39                                                 Less than high school graduate
-40                                    High school graduate (includes equivalency)
-41                                             Some college or associate&#39;s degree
-42                                                              Bachelor&#39;s degree
-43                                                Graduate or professional degree
-44 INDIVIDUALS&#39; INCOME IN THE PAST 12 MONTHS (IN 2022 INFLATION-ADJUSTED DOLLARS)
-45                                                   Population 15 years and over
-46                                                           $1 to $9,999 or loss
-47                                                             $10,000 to $14,999
-48                                                             $15,000 to $24,999
-49                                                             $25,000 to $34,999
-50                                                             $35,000 to $49,999
-51                                                             $50,000 to $64,999
-52                                                             $65,000 to $74,999
-53                                                                $75,000 or more
-54                                                        Median income (dollars)
-55                                           POVERTY STATUS IN THE PAST 12 MONTHS
-56                               Population for whom poverty status is determined
-57                                         Below 100 percent of the poverty level
-58                                        100 to 149 percent of the poverty level
-59                                   At or above 150 percent of the poverty level
-60                                                              PERCENT ALLOCATED
-61                                                             Citizenship status
-62                                                                 Place of birth
-    06824  06825  06890
-1  36,969 20,565  4,443
-2                      
-3    5.2%   4.7%   5.5%
-4   20.2%  16.4%  20.7%
-5   14.8%  12.4%   7.3%
-6   17.9%  17.0%  19.5%
-7   13.5%  15.4%  11.1%
-8   15.4%  14.9%  18.3%
-9    6.7%  11.5%  10.4%
-10   6.3%   7.8%   7.2%
-11   37.5   44.5   44.0
-12                     
-13  47.7%  49.1%  46.0%
-14  52.3%  50.9%  54.0%
-15                     
-16  97.0%  95.1%  97.3%
-17  91.4%  86.2%  90.5%
-18   0.6%   1.6%   0.9%
-19   0.0%   0.0%   0.0%
-20   3.8%   5.4%   5.5%
-21   0.0%   0.0%   0.0%
-22   1.2%   2.0%   0.3%
-23   3.0%   4.9%   2.7%
-24   3.2%   6.9%   2.5%
-25  90.2%  83.6%  89.7%
-26                     
-27 35,034 19,607  4,200
-28  11.9%  20.1%  11.4%
-29   8.5%  13.8%  10.3%
-30   3.5%   6.3%   1.0%
-31                     
-32 29,534 17,249  3,442
-33  35.8%  34.7%  24.3%
-34  52.0%  49.9%  60.4%
-35   8.1%  10.5%   9.3%
-36   4.1%   4.9%   6.0%
-37                     
-38 22,105 13,699  2,957
-39   2.7%   4.8%   1.7%
-40   9.6%  14.9%   8.4%
-41  12.2%  20.1%   9.1%
-42  40.7%  34.0%  37.3%
-43  34.8%  26.2%  43.4%
-44                     
-45 29,534 17,249  3,442
-46  15.8%  15.1%  11.3%
-47   5.2%   6.5%   4.6%
-48   5.4%   6.4%   5.8%
-49   5.9%   6.5%   5.2%
-50   6.1%   7.4%   2.4%
-51   6.1%   8.6%   6.2%
-52   2.5%   4.2%   3.7%
-53  37.9%  33.5%  47.9%
-54 59,240 53,875 91,559
-55                     
-56 33,631 18,796  4,343
-57   5.2%   5.7%   4.3%
-58   1.9%   3.7%   2.9%
-59  92.9%  90.6%  92.8%
-60                     
-61   7.2%   6.6%  10.5%
-62  12.2%  11.4%  18.8%</code></pre>
+<pre><code>                            Demographics 06824 06825 06890
+1                                    SEX                  
+2                                   Male 47.7% 49.1% 46.0%
+3                                 Female 52.3% 50.9% 54.0%
+4     RACE AND HISPANIC OR LATINO ORIGIN                  
+5                               One race 97.0% 95.1% 97.3%
+6                                  White 91.4% 86.2% 90.5%</code></pre>
 </div>
 <hr />
 <div class="layout-chunk" data-layout="l-body">
@@ -1730,7 +1612,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'>mutate</span><span class='op'>(</span>party_simplest <span class='op'>=</span> <span class='fu'>if_else</span><span class='op'>(</span><span class='va'>party_simplified</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DEMOCRAT"</span>, <span class='st'>"REPUBLICAN"</span><span class='op'>)</span>, <span class='va'>party_simplified</span>, <span class='st'>"OTHER"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Firstly, a look at the townwide election results in 2016 and 2020:</p>
+<p>Firstly, a look at the town wide election results in 2016 and 2020:</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
@@ -1942,35 +1824,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code># A tibble: 6 × 3
 # Groups:   zip_code [3]
-  Demographics     zip_code totals  
-  &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;   
-1 Total population 06824    &quot;36,969&quot;
-2 Total population 06825    &quot;20,565&quot;
-3 Total population 06890    &quot;4,443&quot; 
-4     AGE          06824    &quot;&quot;      
-5     AGE          06825    &quot;&quot;      
-6     AGE          06890    &quot;&quot;      </code></pre>
+  Demographics zip_code totals 
+  &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;  
+1     SEX      06824    &quot;&quot;     
+2     SEX      06825    &quot;&quot;     
+3     SEX      06890    &quot;&quot;     
+4         Male 06824    &quot;47.7%&quot;
+5         Male 06825    &quot;49.1%&quot;
+6         Male 06890    &quot;46.0%&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>acs_crosstab</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>acs_crosstab</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-Now, to merge the demographic and voting data sets:
+<p>Now, to merge the demographic and voting data sets:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>voting_demographics</span> <span class='op'>&lt;-</span></span>
 <span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>acs_crosstab</span>, <span class='va'>composite_final</span>, by <span class='op'>=</span> <span class='st'>"zip_code"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>totals</span> <span class='op'>==</span> <span class='st'>""</span><span class='op'>)</span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>voting_demographics</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 6 × 4
-  Demographics     zip_code totals   mean_comp_swing
-  &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
-1 Total population 06824    &quot;36,969&quot;            12.1
-2 Total population 06825    &quot;20,565&quot;            10.7
-3 Total population 06890    &quot;4,443&quot;             13.8
-4     AGE          06824    &quot;&quot;                  12.1
-5     AGE          06825    &quot;&quot;                  10.7
-6     AGE          06890    &quot;&quot;                  13.8</code></pre>
+  Demographics   zip_code totals mean_comp_swing
+  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;
+1         Male   06824    47.7%             12.1
+2         Male   06825    49.1%             10.7
+3         Male   06890    46.0%             13.8
+4         Female 06824    52.3%             12.1
+5         Female 06825    50.9%             10.7
+6         Female 06890    54.0%             13.8</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2010,7 +1893,7 @@ Now, to merge the demographic and voting data sets:
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 0.888
+s.e. = 0.892
 </td>
 </tr>
 <tr>
@@ -2032,7 +1915,7 @@ Demographics            Asian
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2054,7 +1937,7 @@ Demographics            Black or African American
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2076,7 +1959,7 @@ Demographics            Native Hawaiian and Other Pacific Islander
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2098,51 +1981,7 @@ Demographics            Some other race
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics            Speak English “very well”
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics            Speak English less than “very well”
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2164,7 +2003,7 @@ Demographics            White
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2186,7 +2025,7 @@ Demographics        $1 to $9,999 or loss
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2208,7 +2047,7 @@ Demographics        $10,000 to $14,999
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2230,7 +2069,7 @@ Demographics        $15,000 to $24,999
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2252,7 +2091,7 @@ Demographics        $25,000 to $34,999
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2274,7 +2113,7 @@ Demographics        $35,000 to $49,999
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2296,7 +2135,7 @@ Demographics        $50,000 to $64,999
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2318,7 +2157,7 @@ Demographics        $65,000 to $74,999
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2340,205 +2179,7 @@ Demographics        $75,000 or more
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        100 to 149 percent of the poverty level
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        18 to 24 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        25 to 44 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        45 to 54 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        5 to 17 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        55 to 64 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        65 to 74 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        75 years and over
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        At or above 150 percent of the poverty level
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2560,51 +2201,7 @@ Demographics        Bachelor’s degree
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Below 100 percent of the poverty level
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Divorced or separated
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2626,7 +2223,7 @@ Demographics        Female
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2648,7 +2245,7 @@ Demographics        Graduate or professional degree
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2670,7 +2267,7 @@ Demographics        High school graduate (includes equivalency)
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2692,7 +2289,7 @@ Demographics        Hispanic or Latino origin (of any race)
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2714,7 +2311,7 @@ Demographics        Less than high school graduate
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2736,95 +2333,7 @@ Demographics        Male
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Median age (years)
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Median income (dollars)
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Never married
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Now married, except separated
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2846,7 +2355,7 @@ Demographics        One race
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2868,29 +2377,7 @@ Demographics        Some college or associate’s degree
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Speak language other than English
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2912,29 +2399,7 @@ Demographics        Two or more races
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Under 5 years
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -2956,95 +2421,7 @@ Demographics        White alone, not Hispanic or Latino
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics        Widowed
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    AGE
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    Citizenship status
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    Place of birth
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -3066,7 +2443,7 @@ Demographics    Population 15 years and over
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.088
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -3088,249 +2465,7 @@ Demographics    Population 25 years and over
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    Population 5 years and over
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    Population for whom poverty status is determined
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    RACE AND HISPANIC OR LATINO ORIGIN
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Demographics    SEX
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsEDUCATIONAL ATTAINMENT
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsINDIVIDUALS’ INCOME IN THE PAST 12 MONTHS (IN 2022 INFLATION-ADJUSTED DOLLARS)
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsLANGUAGE SPOKEN AT HOME AND ABILITY TO SPEAK ENGLISH
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsMARITAL STATUS
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsPERCENT ALLOCATED
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsPOVERTY STATUS IN THE PAST 12 MONTHS
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-p = 1.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-DemographicsTotal population
-</td>
-<td style="text-align:center;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-s.e. = 1.256
+s.e. = 1.261
 </td>
 </tr>
 <tr>
@@ -3345,7 +2480,7 @@ p = 1.000
 Num.Obs.
 </td>
 <td style="text-align:center;">
-186
+81
 </td>
 </tr>
 <tr>
@@ -3361,13 +2496,14 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
-−0.480
+−0.481
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <h2 id="conclusion">Conclusion</h2>
+<p>Swing voting, on a minute level, is indeed spurred by a specific slew of demographic factors.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

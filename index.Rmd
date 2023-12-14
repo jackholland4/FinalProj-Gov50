@@ -64,8 +64,9 @@ acs2020 <- read.csv("/Users/jackholland/Downloads/ACS2020.csv") |>
     "06824" = ZCTA5.06824..Total..Estimate,
     "06825" = ZCTA5.06825..Total..Estimate,
     "06890" = ZCTA5.06890..Total..Estimate
-  )
-acs2020
+  ) |>
+  slice(12:25, 37:53)
+head(acs2020)
 ```
 
 ___
@@ -86,7 +87,7 @@ biden_retention <- precincts2020 |>
 ```
 
 
-Firstly, a look at the townwide election results in 2016 and 2020:
+Firstly, a look at the town wide election results in 2016 and 2020:
 
 ```{r, echo = FALSE}
 clinton_plot <- clinton_support |>
@@ -239,11 +240,14 @@ acs_crosstab <- acs2020 |>
 head(acs_crosstab)
 acs_crosstab$zip_code <- as.character(acs_crosstab$zip_code)
 ```
+
 Now, to merge the demographic and voting data sets:
+
 ```{r}
 voting_demographics <-
   left_join(acs_crosstab, composite_final, by = "zip_code") |>
-  ungroup()
+  ungroup() |>
+  filter(!totals == "")
 head(voting_demographics)
 ```
 ```{r}
@@ -261,5 +265,6 @@ gof_map = c("nobs", "r.squared", "adj.r.squared"))
 Conclusion
 ---
 
+Swing voting, on a minute level, is indeed spurred by a specific slew of demographic factors.
 
 
