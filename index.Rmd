@@ -303,7 +303,9 @@ white_plot <- voting_pivoted |>
   geom_smooth(method = "lm", se = FALSE) +
   labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% White non-Hispanic", y = "d_swing")
 
-wealth_plot + col_plot + white_plot
+wealth_plot
+col_plot
+white_plot
 
 
 knitr::kable(voting_pivoted)
