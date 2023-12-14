@@ -254,10 +254,7 @@ head(voting_demographics)
 str(composite_final)
 regression <- lm(mean_comp_swing ~ Demographics, data = voting_demographics)
 
-modelsummary::modelsummary(regression,
-statistic = c("s.e. = {std.error}",
-"p = {p.value}"),
-gof_map = c("nobs", "r.squared", "adj.r.squared"))
+knitr::kable(regression)
 ```
 
 
