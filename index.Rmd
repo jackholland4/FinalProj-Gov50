@@ -57,7 +57,15 @@ pres16ct <- pres16 |>
 
 ```{r}
 #ACS estimates by precinct
-acs2020 <- read.csv("/Users/jackholland/Downloads/ACS2020.csv")
+acs2020 <- read.csv("/Users/jackholland/Downloads/ACS2020.csv") |>
+  select(Label..Grouping., ZCTA5.06824..Total..Estimate, ZCTA5.06825..Total..Estimate, ZCTA5.06890..Total..Estimate) |>
+  rename(
+    Demographics = Label..Grouping.,
+    "06824" = ZCTA5.06824..Total..Estimate,
+    "06825" = ZCTA5.06825..Total..Estimate,
+    "06890" = ZCTA5.06890..Total..Estimate
+  )
+acs2020
 ```
 
 ___
@@ -68,88 +76,19 @@ clinton_support <- pres16ct |>
   mutate(cand_edit = if_else(candidate_normalized %in% c("trump", "clinton"), candidate_normalized, "Third Party")) |>
   filter(jurisdiction == "Fairfield")
 
-biden_retention <- precincts2020 %>%
+biden_retention <- precincts2020 |>
   filter(
     state_po == "CT",
     jurisdiction_name == "FAIRFIELD",
     !is.na(party_simplified)
-  ) %>%
+  ) |>
   mutate(party_simplest = if_else(party_simplified %in% c("DEMOCRAT", "REPUBLICAN"), party_simplified, "OTHER"))
 ```
 
 
-```{r, echo= FALSE, results='hide'}
-#Renaming data and column names for joining
-clinton_support <- clinton_support |>
-  mutate(precinct_amended = precinct)
-
-biden_retention <- biden_retention |>
-  mutate(precinct = case_when(
-    precinct == "DISTRICT 1-34-DWIGHT SCHOOL" ~ "Dwight School",
-    precinct == "DISTRICT 10-32-MILL HILL SCHOOL" ~ "Mill Hill School",
-    precinct == "DISTRICT 2-34-ST PIUS SCHOOL" ~ "St Pius School",
-    precinct == "DISTRICT 4-33-STRATFIELD SCHOOL" ~ "Stratfield School",
-    precinct == "DISTRICT 5-33-FAIRFIELD WARDE HIGH SCHOOL" ~ "Fairfield Warde High School",
-    precinct == "DISTRICT 6-33-MCKINLEY SCHOOL" ~ "Mckinley School",
-    precinct == "DISTRICT 7-33-HOLLAND HILL SCHOOL" ~ "Holland Hill School",
-    precinct == "DISTRICT 8-32-FAIRFIELD LUDLOWE HIGH SCHOOL" ~ "Fairfield Ludlowe High School",
-    precinct == "DISTRICT 9-32-SHERMAN SCHOOL" ~ "Sherman School",
-    TRUE ~ "Fairfield Woods Middle School"))
-```
-
-```{r, results='hide'}
-#Now, pivoting the tables to compare swing data
-clinton_returns <- clinton_support |>
-  group_by(precinct, cand_edit) |>
-  summarize(vote_totals = sum(votes)) |>
-  pivot_wider(
-    names_from = cand_edit,
-    values_from = vote_totals
-  )
-
-biden_returns <- biden_retention |>
-  group_by(precinct, candidate) |>
-  summarize(vote_totals = sum(votes)) |>
-  pivot_wider(
-    names_from = candidate,
-    values_from = vote_totals
-  )
-```
-
-```{r}
-#Merging the Datasets...
-composite_returns <- clinton_returns |>
-  left_join(biden_returns, by = "precinct")
-knitr::kable(composite_returns)
-```
-
-And finally, our dependent variable... presidential swings by precinct:
-
-```{r}
-composite_plot <- composite_returns |>
-  mutate(comp_swing = (`JOSEPH R BIDEN` / (`JOSEPH R BIDEN` / `DONALD J TRUMP`) - (`clinton` / (`clinton` * `trump`)))) |>
-  filter(!is.na(comp_swing)) |>
-  ggplot(
-    aes(x=reorder(precinct, comp_swing),
-        y =comp_swing)
-  ) +
-  geom_bar(stat = 'identity', mapping = aes(fill = comp_swing)) +
-  labs(
-    title = "2016-2020 Presidential Raw Swings",
-    x = "Precinct (School District)",
-    y = "Two Way Raw Swing (D-R)")
-print(composite_plot)
-
-```
-
-
-
-The Results
----
-___
-
 Firstly, a look at the townwide election results in 2016 and 2020:
-```{r}
+
+```{r, echo = FALSE}
 clinton_plot <- clinton_support |>
   ggplot(aes(x = cand_edit, y = votes, fill = cand_edit)) +
   geom_bar(stat = "identity") +
@@ -182,6 +121,143 @@ biden_plot <- biden_retention |>
 
 clinton_plot + biden_plot
 ```
+
+```{r, echo= FALSE, results='hide'}
+#Renaming data and column names for joining
+clinton_support <- clinton_support |>
+  mutate(precinct_amended = precinct)
+
+biden_retention <- biden_retention |>
+  mutate(precinct = case_when(
+    precinct == "DISTRICT 1-34-DWIGHT SCHOOL" ~ "Dwight School",
+    precinct == "DISTRICT 10-32-MILL HILL SCHOOL" ~ "Mill Hill School",
+    precinct == "DISTRICT 2-34-ST PIUS SCHOOL" ~ "St Pius School",
+    precinct == "DISTRICT 4-33-STRATFIELD SCHOOL" ~ "Stratfield School",
+    precinct == "DISTRICT 5-33-FAIRFIELD WARDE HIGH SCHOOL" ~ "Fairfield Warde High School",
+    precinct == "DISTRICT 6-33-MCKINLEY SCHOOL" ~ "Mckinley School",
+    precinct == "DISTRICT 7-33-HOLLAND HILL SCHOOL" ~ "Holland Hill School",
+    precinct == "DISTRICT 8-32-FAIRFIELD LUDLOWE HIGH SCHOOL" ~ "Fairfield Ludlowe High School",
+    precinct == "DISTRICT 9-32-SHERMAN SCHOOL" ~ "Sherman School",
+    TRUE ~ "Fairfield Woods Middle School"))
+```
+
+
+```{r, results='hide'}
+#Now, pivoting the tables to compare swing data
+clinton_returns <- clinton_support |>
+  group_by(precinct, cand_edit) |>
+  summarize(vote_totals = sum(votes)) |>
+  pivot_wider(
+    names_from = cand_edit,
+    values_from = vote_totals
+  )
+
+biden_returns <- biden_retention |>
+  group_by(precinct, candidate) |>
+  summarize(vote_totals = sum(votes)) |>
+  pivot_wider(
+    names_from = candidate,
+    values_from = vote_totals
+  )
+```
+
+
+```{r}
+#Merging the Datasets...
+composite_returns <- clinton_returns |>
+  left_join(biden_returns, by = "precinct") |>
+  select(precinct, clinton, trump, 'DONALD J TRUMP', 'JOSEPH R BIDEN') |>
+  rename(
+    "Precinct" = precinct,
+    "Clinton16" = clinton,
+    "Trump16" = trump,
+    "Trump20" = 'DONALD J TRUMP',
+    "Biden20" = 'JOSEPH R BIDEN'
+  ) |>
+  mutate(
+    turnout_16 = (Clinton16 + Trump16),
+    turnout_20 = (Biden20 + Trump20),
+    dmarg_16 = ((Clinton16-Trump16)/turnout_16),
+    dmarg_20 = ((Biden20-Trump20)/turnout_20),
+    comp_swing = (dmarg_20-dmarg_16)*100)
+(knitr::kable(head(composite_returns)))
+```
+
+And finally, our dependent variable... presidential swings by precinct:
+
+```{r}
+composite_plot <- composite_returns |>
+  filter(!is.na(comp_swing)) |>
+  ggplot(
+    aes(x=reorder(Precinct, comp_swing),
+        y =comp_swing)
+  ) +
+  geom_bar(stat = 'identity', mapping = aes(fill = comp_swing)) +
+  labs(
+    title = "2016-2020 Presidential Swings",
+    x = "Precinct (School District)",
+    y = "Two Way Raw Swing (D-R), in percentage points",
+    fill = "D Swing (%)")
+
+print(composite_plot)
+
+```
+
+___
+
+The Results
+---
+
+The hard part of comparing election returns with ACS data is that the Census Bureau offers comprehensive location filters, but very few precinct or electoral boundary options. Thus, we have to water down the precinct returns into the three ZIP codes they are nested inside. Such limits the available points of comparison between districts, but doesn't mess with the calculations, by virtue of how the districts are nested. Below, the two datasets are merged:
+
+```{r}
+composite_final <- composite_returns |>
+  mutate(zip_code = case_when(
+    Precinct == "Mill Hill School" ~ 06890,
+    Precinct == "Stratfield School" ~ 06825,
+    Precinct == "Fairfield Woods Middle School" ~ 06825,
+    Precinct == "Fairfield Warde High School" ~ 06825,
+    TRUE ~ 06824)) |>
+  ungroup() |>
+  select(comp_swing, zip_code) |>
+  group_by(zip_code) |>
+  summarise(mean_comp_swing = mean(comp_swing, na.rm = TRUE))
+
+composite_final$zip_code <- as.character(composite_final$zip_code)
+composite_final$zip_code <- sprintf("%05d", as.numeric(composite_final$zip_code))
+head(composite_final)
+```
+    
+```{r}
+acs_crosstab <- acs2020 |>
+  pivot_longer(
+    cols = `06824`:`06890`,
+    values_to = "totals",
+    names_to = "zip_code"
+  ) |>
+  group_by(zip_code)
+head(acs_crosstab)
+acs_crosstab$zip_code <- as.character(acs_crosstab$zip_code)
+```
+Now, to merge the demographic and voting data sets:
+```{r}
+voting_demographics <-
+  left_join(acs_crosstab, composite_final, by = "zip_code") |>
+  ungroup()
+head(voting_demographics)
+```
+```{r}
+str(composite_final)
+regression <- lm(mean_comp_swing ~ Demographics, data = voting_demographics)
+
+modelsummary::modelsummary(regression,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
+```
+
+
+
 Conclusion
 ---
 

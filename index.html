@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-5-2.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-6-2.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-8-2.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-5-2.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-6-2.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-8-2.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1498,6 +1498,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.25/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1574,8 +1576,142 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#ACS estimates by precinct</span></span>
-<span><span class='va'>acs2020</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"/Users/jackholland/Downloads/ACS2020.csv"</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>acs2020</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"/Users/jackholland/Downloads/ACS2020.csv"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>select</span><span class='op'>(</span><span class='va'>Label..Grouping.</span>, <span class='va'>ZCTA5.06824..Total..Estimate</span>, <span class='va'>ZCTA5.06825..Total..Estimate</span>, <span class='va'>ZCTA5.06890..Total..Estimate</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>rename</span><span class='op'>(</span></span>
+<span>    Demographics <span class='op'>=</span> <span class='va'>Label..Grouping.</span>,</span>
+<span>    <span class='st'>"06824"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06824..Total..Estimate</span>,</span>
+<span>    <span class='st'>"06825"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06825..Total..Estimate</span>,</span>
+<span>    <span class='st'>"06890"</span> <span class='op'>=</span> <span class='va'>ZCTA5.06890..Total..Estimate</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='va'>acs2020</span></span></code></pre>
 </div>
+<pre><code>                                                                     Demographics
+1                                                                Total population
+2                                                                             AGE
+3                                                                   Under 5 years
+4                                                                   5 to 17 years
+5                                                                  18 to 24 years
+6                                                                  25 to 44 years
+7                                                                  45 to 54 years
+8                                                                  55 to 64 years
+9                                                                  65 to 74 years
+10                                                              75 years and over
+11                                                             Median age (years)
+12                                                                            SEX
+13                                                                           Male
+14                                                                         Female
+15                                             RACE AND HISPANIC OR LATINO ORIGIN
+16                                                                       One race
+17                                                                          White
+18                                                      Black or African American
+19                                              American Indian and Alaska Native
+20                                                                          Asian
+21                                     Native Hawaiian and Other Pacific Islander
+22                                                                Some other race
+23                                                              Two or more races
+24                                        Hispanic or Latino origin (of any race)
+25                                            White alone, not Hispanic or Latino
+26                           LANGUAGE SPOKEN AT HOME AND ABILITY TO SPEAK ENGLISH
+27                                                    Population 5 years and over
+28                                              Speak language other than English
+29                                                     Speak English  &quot;very well&quot;
+30                                            Speak English less than &quot;very well&quot;
+31                                                                 MARITAL STATUS
+32                                                   Population 15 years and over
+33                                                                  Never married
+34                                                  Now married, except separated
+35                                                          Divorced or separated
+36                                                                        Widowed
+37                                                         EDUCATIONAL ATTAINMENT
+38                                                   Population 25 years and over
+39                                                 Less than high school graduate
+40                                    High school graduate (includes equivalency)
+41                                             Some college or associate&#39;s degree
+42                                                              Bachelor&#39;s degree
+43                                                Graduate or professional degree
+44 INDIVIDUALS&#39; INCOME IN THE PAST 12 MONTHS (IN 2022 INFLATION-ADJUSTED DOLLARS)
+45                                                   Population 15 years and over
+46                                                           $1 to $9,999 or loss
+47                                                             $10,000 to $14,999
+48                                                             $15,000 to $24,999
+49                                                             $25,000 to $34,999
+50                                                             $35,000 to $49,999
+51                                                             $50,000 to $64,999
+52                                                             $65,000 to $74,999
+53                                                                $75,000 or more
+54                                                        Median income (dollars)
+55                                           POVERTY STATUS IN THE PAST 12 MONTHS
+56                               Population for whom poverty status is determined
+57                                         Below 100 percent of the poverty level
+58                                        100 to 149 percent of the poverty level
+59                                   At or above 150 percent of the poverty level
+60                                                              PERCENT ALLOCATED
+61                                                             Citizenship status
+62                                                                 Place of birth
+    06824  06825  06890
+1  36,969 20,565  4,443
+2                      
+3    5.2%   4.7%   5.5%
+4   20.2%  16.4%  20.7%
+5   14.8%  12.4%   7.3%
+6   17.9%  17.0%  19.5%
+7   13.5%  15.4%  11.1%
+8   15.4%  14.9%  18.3%
+9    6.7%  11.5%  10.4%
+10   6.3%   7.8%   7.2%
+11   37.5   44.5   44.0
+12                     
+13  47.7%  49.1%  46.0%
+14  52.3%  50.9%  54.0%
+15                     
+16  97.0%  95.1%  97.3%
+17  91.4%  86.2%  90.5%
+18   0.6%   1.6%   0.9%
+19   0.0%   0.0%   0.0%
+20   3.8%   5.4%   5.5%
+21   0.0%   0.0%   0.0%
+22   1.2%   2.0%   0.3%
+23   3.0%   4.9%   2.7%
+24   3.2%   6.9%   2.5%
+25  90.2%  83.6%  89.7%
+26                     
+27 35,034 19,607  4,200
+28  11.9%  20.1%  11.4%
+29   8.5%  13.8%  10.3%
+30   3.5%   6.3%   1.0%
+31                     
+32 29,534 17,249  3,442
+33  35.8%  34.7%  24.3%
+34  52.0%  49.9%  60.4%
+35   8.1%  10.5%   9.3%
+36   4.1%   4.9%   6.0%
+37                     
+38 22,105 13,699  2,957
+39   2.7%   4.8%   1.7%
+40   9.6%  14.9%   8.4%
+41  12.2%  20.1%   9.1%
+42  40.7%  34.0%  37.3%
+43  34.8%  26.2%  43.4%
+44                     
+45 29,534 17,249  3,442
+46  15.8%  15.1%  11.3%
+47   5.2%   6.5%   4.6%
+48   5.4%   6.4%   5.8%
+49   5.9%   6.5%   5.2%
+50   6.1%   7.4%   2.4%
+51   6.1%   8.6%   6.2%
+52   2.5%   4.2%   3.7%
+53  37.9%  33.5%  47.9%
+54 59,240 53,875 91,559
+55                     
+56 33,631 18,796  4,343
+57   5.2%   5.7%   4.3%
+58   1.9%   3.7%   2.9%
+59  92.9%  90.6%  92.8%
+60                     
+61   7.2%   6.6%  10.5%
+62  12.2%  11.4%  18.8%</code></pre>
 </div>
 <hr />
 <div class="layout-chunk" data-layout="l-body">
@@ -1585,14 +1721,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'>mutate</span><span class='op'>(</span>cand_edit <span class='op'>=</span> <span class='fu'>if_else</span><span class='op'>(</span><span class='va'>candidate_normalized</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"trump"</span>, <span class='st'>"clinton"</span><span class='op'>)</span>, <span class='va'>candidate_normalized</span>, <span class='st'>"Third Party"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>jurisdiction</span> <span class='op'>==</span> <span class='st'>"Fairfield"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>biden_retention</span> <span class='op'>&lt;-</span> <span class='va'>precincts2020</span> <span class='op'>%&gt;%</span></span>
+<span><span class='va'>biden_retention</span> <span class='op'>&lt;-</span> <span class='va'>precincts2020</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span></span>
 <span>    <span class='va'>state_po</span> <span class='op'>==</span> <span class='st'>"CT"</span>,</span>
 <span>    <span class='va'>jurisdiction_name</span> <span class='op'>==</span> <span class='st'>"FAIRFIELD"</span>,</span>
 <span>    <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>party_simplified</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span> <span class='op'>%&gt;%</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>mutate</span><span class='op'>(</span>party_simplest <span class='op'>=</span> <span class='fu'>if_else</span><span class='op'>(</span><span class='va'>party_simplified</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DEMOCRAT"</span>, <span class='st'>"REPUBLICAN"</span><span class='op'>)</span>, <span class='va'>party_simplified</span>, <span class='st'>"OTHER"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
+</div>
+<p>Firstly, a look at the townwide election results in 2016 and 2020:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -1621,154 +1761,120 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Merging the Datasets...</span></span>
 <span><span class='va'>composite_returns</span> <span class='op'>&lt;-</span> <span class='va'>clinton_returns</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>biden_returns</span>, by <span class='op'>=</span> <span class='st'>"precinct"</span><span class='op'>)</span></span>
-<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>composite_returns</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>biden_returns</span>, by <span class='op'>=</span> <span class='st'>"precinct"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>select</span><span class='op'>(</span><span class='va'>precinct</span>, <span class='va'>clinton</span>, <span class='va'>trump</span>, <span class='st'>'DONALD J TRUMP'</span>, <span class='st'>'JOSEPH R BIDEN'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>rename</span><span class='op'>(</span></span>
+<span>    <span class='st'>"Precinct"</span> <span class='op'>=</span> <span class='va'>precinct</span>,</span>
+<span>    <span class='st'>"Clinton16"</span> <span class='op'>=</span> <span class='va'>clinton</span>,</span>
+<span>    <span class='st'>"Trump16"</span> <span class='op'>=</span> <span class='va'>trump</span>,</span>
+<span>    <span class='st'>"Trump20"</span> <span class='op'>=</span> <span class='st'>'DONALD J TRUMP'</span>,</span>
+<span>    <span class='st'>"Biden20"</span> <span class='op'>=</span> <span class='st'>'JOSEPH R BIDEN'</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>mutate</span><span class='op'>(</span></span>
+<span>    turnout_16 <span class='op'>=</span> <span class='op'>(</span><span class='va'>Clinton16</span> <span class='op'>+</span> <span class='va'>Trump16</span><span class='op'>)</span>,</span>
+<span>    turnout_20 <span class='op'>=</span> <span class='op'>(</span><span class='va'>Biden20</span> <span class='op'>+</span> <span class='va'>Trump20</span><span class='op'>)</span>,</span>
+<span>    dmarg_16 <span class='op'>=</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>Clinton16</span><span class='op'>-</span><span class='va'>Trump16</span><span class='op'>)</span><span class='op'>/</span><span class='va'>turnout_16</span><span class='op'>)</span>,</span>
+<span>    dmarg_20 <span class='op'>=</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>Biden20</span><span class='op'>-</span><span class='va'>Trump20</span><span class='op'>)</span><span class='op'>/</span><span class='va'>turnout_20</span><span class='op'>)</span>,</span>
+<span>    comp_swing <span class='op'>=</span> <span class='op'>(</span><span class='va'>dmarg_20</span><span class='op'>-</span><span class='va'>dmarg_16</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span></span>
+<span><span class='op'>(</span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>composite_returns</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
 <colgroup>
-<col style="width: 21%" />
+<col style="width: 25%" />
 <col style="width: 8%" />
-<col style="width: 5%" />
-<col style="width: 4%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
 <col style="width: 9%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
+<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 9%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">precinct</th>
-<th style="text-align: right;">Third Party</th>
-<th style="text-align: right;">clinton</th>
-<th style="text-align: right;">trump</th>
-<th style="text-align: right;">DONALD J TRUMP</th>
-<th style="text-align: right;">HOWIE HAWKINS</th>
-<th style="text-align: right;">JO JORGENSEN</th>
-<th style="text-align: right;">JOSEPH R BIDEN</th>
-<th style="text-align: right;">BRIAN CARROLL</th>
-<th style="text-align: right;">KANYE WEST</th>
+<th style="text-align: left;">Precinct</th>
+<th style="text-align: right;">Clinton16</th>
+<th style="text-align: right;">Trump16</th>
+<th style="text-align: right;">Trump20</th>
+<th style="text-align: right;">Biden20</th>
+<th style="text-align: right;">turnout_16</th>
+<th style="text-align: right;">turnout_20</th>
+<th style="text-align: right;">dmarg_16</th>
+<th style="text-align: right;">dmarg_20</th>
+<th style="text-align: right;">comp_swing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Dwight School</td>
-<td style="text-align: right;">210</td>
 <td style="text-align: right;">1937</td>
 <td style="text-align: right;">1447</td>
 <td style="text-align: right;">1510</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">64</td>
 <td style="text-align: right;">2552</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3384</td>
+<td style="text-align: right;">4062</td>
+<td style="text-align: right;">0.1447991</td>
+<td style="text-align: right;">0.2565239</td>
+<td style="text-align: right;">11.172482</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fairfield Ludlowe High School</td>
-<td style="text-align: right;">139</td>
 <td style="text-align: right;">1829</td>
 <td style="text-align: right;">1344</td>
 <td style="text-align: right;">1286</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">34</td>
 <td style="text-align: right;">2469</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">3173</td>
+<td style="text-align: right;">3755</td>
+<td style="text-align: right;">0.1528522</td>
+<td style="text-align: right;">0.3150466</td>
+<td style="text-align: right;">16.219441</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fairfield Warde High School</td>
-<td style="text-align: right;">119</td>
 <td style="text-align: right;">1647</td>
 <td style="text-align: right;">1067</td>
 <td style="text-align: right;">1131</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">22</td>
 <td style="text-align: right;">2142</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;">2714</td>
+<td style="text-align: right;">3273</td>
+<td style="text-align: right;">0.2137067</td>
+<td style="text-align: right;">0.3088909</td>
+<td style="text-align: right;">9.518422</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Fairfield Woods Middle School</td>
-<td style="text-align: right;">138</td>
 <td style="text-align: right;">1958</td>
 <td style="text-align: right;">1525</td>
 <td style="text-align: right;">1444</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">42</td>
 <td style="text-align: right;">2484</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3483</td>
+<td style="text-align: right;">3928</td>
+<td style="text-align: right;">0.1243181</td>
+<td style="text-align: right;">0.2647658</td>
+<td style="text-align: right;">14.044767</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Holland Hill School</td>
-<td style="text-align: right;">100</td>
 <td style="text-align: right;">1437</td>
 <td style="text-align: right;">940</td>
 <td style="text-align: right;">747</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">21</td>
 <td style="text-align: right;">1501</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2377</td>
+<td style="text-align: right;">2248</td>
+<td style="text-align: right;">0.2090871</td>
+<td style="text-align: right;">0.3354093</td>
+<td style="text-align: right;">12.632217</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">McKinley School</td>
-<td style="text-align: right;">123</td>
 <td style="text-align: right;">1498</td>
 <td style="text-align: right;">939</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
+<td style="text-align: right;">2437</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mill Hill School</td>
-<td style="text-align: right;">155</td>
-<td style="text-align: right;">1991</td>
-<td style="text-align: right;">1327</td>
-<td style="text-align: right;">1289</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: right;">2607</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sherman School</td>
-<td style="text-align: right;">139</td>
-<td style="text-align: right;">2003</td>
-<td style="text-align: right;">1230</td>
-<td style="text-align: right;">1217</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">2499</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">St Pius School</td>
-<td style="text-align: right;">116</td>
-<td style="text-align: right;">1609</td>
-<td style="text-align: right;">1215</td>
-<td style="text-align: right;">1251</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">2035</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Stratfield School</td>
-<td style="text-align: right;">161</td>
-<td style="text-align: right;">2132</td>
-<td style="text-align: right;">1078</td>
-<td style="text-align: right;">1097</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">2652</td>
+<td style="text-align: right;">0.2293804</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
@@ -1779,62 +1885,1490 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>composite_plot</span> <span class='op'>&lt;-</span> <span class='va'>composite_returns</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>mutate</span><span class='op'>(</span>comp_swing <span class='op'>=</span> <span class='op'>(</span><span class='va'>`JOSEPH R BIDEN`</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>`JOSEPH R BIDEN`</span> <span class='op'>/</span> <span class='va'>`DONALD J TRUMP`</span><span class='op'>)</span> <span class='op'>-</span> <span class='op'>(</span><span class='va'>`clinton`</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>`clinton`</span> <span class='op'>*</span> <span class='va'>`trump`</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>comp_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>ggplot</span><span class='op'>(</span></span>
-<span>    <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>precinct</span>, <span class='va'>comp_swing</span><span class='op'>)</span>,</span>
+<span>    <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>Precinct</span>, <span class='va'>comp_swing</span><span class='op'>)</span>,</span>
 <span>        y <span class='op'>=</span><span class='va'>comp_swing</span><span class='op'>)</span></span>
 <span>  <span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>'identity'</span>, mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>comp_swing</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'>labs</span><span class='op'>(</span></span>
-<span>    title <span class='op'>=</span> <span class='st'>"2016-2020 Presidential Raw Swings"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"2016-2020 Presidential Swings"</span>,</span>
 <span>    x <span class='op'>=</span> <span class='st'>"Precinct (School District)"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Two Way Raw Swing (D-R)"</span><span class='op'>)</span></span>
+<span>    y <span class='op'>=</span> <span class='st'>"Two Way Raw Swing (D-R), in percentage points"</span>,</span>
+<span>    fill <span class='op'>=</span> <span class='st'>"D Swing (%)"</span><span class='op'>)</span></span>
+<span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>composite_plot</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
-</div>
-<h2 id="the-results">The Results</h2>
-<hr />
-Firstly, a look at the townwide election results in 2016 and 2020:
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>clinton_plot</span> <span class='op'>&lt;-</span> <span class='va'>clinton_support</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>cand_edit</span>, y <span class='op'>=</span> <span class='va'>votes</span>, fill <span class='op'>=</span> <span class='va'>cand_edit</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>labs</span><span class='op'>(</span></span>
-<span>    title <span class='op'>=</span> <span class='st'>"2016 President (Fairfield, CT)"</span>,</span>
-<span>    x <span class='op'>=</span> <span class='st'>"Candidate"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Vote Total"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>labs</span><span class='op'>(</span></span>
-<span>        fill <span class='op'>=</span> <span class='st'>"Candidate"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>scale_x_discrete</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>clinton <span class='op'>=</span> <span class='st'>"Clinton"</span>, <span class='st'>"trump"</span> <span class='op'>=</span> <span class='st'>"Trump"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Third Party"</span> <span class='op'>=</span> <span class='st'>"darkgoldenrod"</span>, <span class='st'>"clinton"</span> <span class='op'>=</span> <span class='st'>"steelblue1"</span>, <span class='st'>"trump"</span> <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span>,</span>
-<span>                    labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"trump"</span> <span class='op'>=</span> <span class='st'>"Trump"</span>, <span class='st'>"clinton"</span> <span class='op'>=</span> <span class='st'>"Clinton"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span></span>
-<span></span>
-<span><span class='va'>biden_plot</span> <span class='op'>&lt;-</span> <span class='va'>biden_retention</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>party_simplest</span>, y <span class='op'>=</span> <span class='va'>votes</span>, fill <span class='op'>=</span> <span class='va'>party_simplest</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>labs</span><span class='op'>(</span></span>
-<span>    title <span class='op'>=</span> <span class='st'>"2020 President (Fairfield, CT)"</span>,</span>
-<span>    x <span class='op'>=</span> <span class='st'>"Candidate"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Vote Total"</span>,</span>
-<span>    fill <span class='op'>=</span> <span class='st'>"Candidate"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>scale_x_discrete</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"OTHER"</span> <span class='op'>=</span> <span class='st'>"Third Party"</span>, <span class='st'>"DEMOCRAT"</span> <span class='op'>=</span> <span class='st'>"Biden"</span>, <span class='st'>"REPUBLICAN"</span> <span class='op'>=</span> <span class='st'>"Trump"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"OTHER"</span> <span class='op'>=</span> <span class='st'>"darkgoldenrod"</span>, <span class='st'>"DEMOCRAT"</span> <span class='op'>=</span> <span class='st'>"steelblue1"</span>, <span class='st'>"REPUBLICAN"</span> <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span>,</span>
-<span>                    labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"OTHER"</span> <span class='op'>=</span> <span class='st'>"Third Party"</span>, <span class='st'>"DEMOCRAT"</span> <span class='op'>=</span> <span class='st'>"Biden"</span>, <span class='st'>"REPUBLICAN"</span> <span class='op'>=</span> <span class='st'>"Trump"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span> <span class='st'>"Candidate"</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>clinton_plot</span> <span class='op'>+</span> <span class='va'>biden_plot</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
+<hr />
+<h2 id="the-results">The Results</h2>
+<p>The hard part of comparing election returns with ACS data is that the Census Bureau offers comprehensive location filters, but very few precinct or electoral boundary options. Thus, we have to water down the precinct returns into the three ZIP codes they are nested inside. Such limits the available points of comparison between districts, but doesn’t mess with the calculations, by virtue of how the districts are nested. Below, the two datasets are merged:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>composite_final</span> <span class='op'>&lt;-</span> <span class='va'>composite_returns</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>mutate</span><span class='op'>(</span>zip_code <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span></span>
+<span>    <span class='va'>Precinct</span> <span class='op'>==</span> <span class='st'>"Mill Hill School"</span> <span class='op'>~</span> <span class='fl'>06890</span>,</span>
+<span>    <span class='va'>Precinct</span> <span class='op'>==</span> <span class='st'>"Stratfield School"</span> <span class='op'>~</span> <span class='fl'>06825</span>,</span>
+<span>    <span class='va'>Precinct</span> <span class='op'>==</span> <span class='st'>"Fairfield Woods Middle School"</span> <span class='op'>~</span> <span class='fl'>06825</span>,</span>
+<span>    <span class='va'>Precinct</span> <span class='op'>==</span> <span class='st'>"Fairfield Warde High School"</span> <span class='op'>~</span> <span class='fl'>06825</span>,</span>
+<span>    <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='fl'>06824</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>select</span><span class='op'>(</span><span class='va'>comp_swing</span>, <span class='va'>zip_code</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>zip_code</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>summarise</span><span class='op'>(</span>mean_comp_swing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>comp_swing</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span></span>
+<span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"%05d"</span>, <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 3 × 2
+  zip_code mean_comp_swing
+  &lt;chr&gt;              &lt;dbl&gt;
+1 06824               12.1
+2 06825               10.7
+3 06890               13.8</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>acs_crosstab</span> <span class='op'>&lt;-</span> <span class='va'>acs2020</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>pivot_longer</span><span class='op'>(</span></span>
+<span>    cols <span class='op'>=</span> <span class='va'>`06824`</span><span class='op'>:</span><span class='va'>`06890`</span>,</span>
+<span>    values_to <span class='op'>=</span> <span class='st'>"totals"</span>,</span>
+<span>    names_to <span class='op'>=</span> <span class='st'>"zip_code"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>zip_code</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs_crosstab</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 6 × 3
+# Groups:   zip_code [3]
+  Demographics     zip_code totals  
+  &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;   
+1 Total population 06824    &quot;36,969&quot;
+2 Total population 06825    &quot;20,565&quot;
+3 Total population 06890    &quot;4,443&quot; 
+4     AGE          06824    &quot;&quot;      
+5     AGE          06825    &quot;&quot;      
+6     AGE          06890    &quot;&quot;      </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>acs_crosstab</span><span class='op'>$</span><span class='va'>zip_code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>acs_crosstab</span><span class='op'>$</span><span class='va'>zip_code</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+Now, to merge the demographic and voting data sets:
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>voting_demographics</span> <span class='op'>&lt;-</span></span>
+<span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>acs_crosstab</span>, <span class='va'>composite_final</span>, by <span class='op'>=</span> <span class='st'>"zip_code"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>voting_demographics</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 6 × 4
+  Demographics     zip_code totals   mean_comp_swing
+  &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
+1 Total population 06824    &quot;36,969&quot;            12.1
+2 Total population 06825    &quot;20,565&quot;            10.7
+3 Total population 06890    &quot;4,443&quot;             13.8
+4     AGE          06824    &quot;&quot;                  12.1
+5     AGE          06825    &quot;&quot;                  10.7
+6     AGE          06890    &quot;&quot;                  13.8</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>composite_final</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>tibble [3 × 2] (S3: tbl_df/tbl/data.frame)
+ $ zip_code       : chr [1:3] &quot;06824&quot; &quot;06825&quot; &quot;06890&quot;
+ $ mean_comp_swing: num [1:3] 12.1 10.7 13.8</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mean_comp_swing</span> <span class='op'>~</span> <span class='va'>Demographics</span>, data <span class='op'>=</span> <span class='va'>voting_demographics</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>regression</span>,</span>
+<span>statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span><span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+12.219
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.888
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            Asian
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            Black or African American
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            Native Hawaiian and Other Pacific Islander
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            Some other race
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            Speak English “very well”
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            Speak English less than “very well”
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics            White
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $1 to $9,999 or loss
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $10,000 to $14,999
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $15,000 to $24,999
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $25,000 to $34,999
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $35,000 to $49,999
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $50,000 to $64,999
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $65,000 to $74,999
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        $75,000 or more
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        100 to 149 percent of the poverty level
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        18 to 24 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        25 to 44 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        45 to 54 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        5 to 17 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        55 to 64 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        65 to 74 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        75 years and over
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        At or above 150 percent of the poverty level
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Bachelor’s degree
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Below 100 percent of the poverty level
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Divorced or separated
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Female
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Graduate or professional degree
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        High school graduate (includes equivalency)
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Hispanic or Latino origin (of any race)
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Less than high school graduate
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Male
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Median age (years)
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Median income (dollars)
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Never married
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Now married, except separated
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        One race
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Some college or associate’s degree
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Speak language other than English
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Two or more races
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Under 5 years
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        White alone, not Hispanic or Latino
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics        Widowed
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    AGE
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    Citizenship status
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    Place of birth
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    Population 15 years and over
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    Population 25 years and over
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    Population 5 years and over
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    Population for whom poverty status is determined
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    RACE AND HISPANIC OR LATINO ORIGIN
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Demographics    SEX
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsEDUCATIONAL ATTAINMENT
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsINDIVIDUALS’ INCOME IN THE PAST 12 MONTHS (IN 2022 INFLATION-ADJUSTED DOLLARS)
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsLANGUAGE SPOKEN AT HOME AND ABILITY TO SPEAK ENGLISH
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsMARITAL STATUS
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsPERCENT ALLOCATED
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsPOVERTY STATUS IN THE PAST 12 MONTHS
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DemographicsTotal population
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1.256
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+186
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+−0.480
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="conclusion">Conclusion</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
