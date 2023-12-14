@@ -244,19 +244,17 @@ acs_crosstab <- acs2020 |>
     names_to = "zip_code"
   ) |>
   group_by(zip_code)
-knitr::kable(head(acs_crosstab))
 acs_crosstab$zip_code <- as.character(acs_crosstab$zip_code)
 ```
 
-Now, to merge the demographic and voting data sets:
-
 ```{r}
+#Now, to merge the demographic and voting data sets:
 voting_demographics <-
   left_join(acs_crosstab, composite_final, by = "zip_code") |>
   ungroup() |>
   filter(!totals == "")
-knitr::kable(head(voting_demographics))
 ```
+
 ```{r}
 voting_pivoted <- voting_demographics |>
   group_by(Demographics, totals) |>
@@ -277,8 +275,6 @@ voting_pivoted <- voting_demographics |>
 voting_pivoted$white_perc <- as.numeric(gsub("%", "", voting_pivoted$white_perc))
 voting_pivoted$col_attain <- as.numeric(gsub("%", "", voting_pivoted$col_attain))
 voting_pivoted$wealth_perc <- as.numeric(gsub("%", "", voting_pivoted$wealth_perc))
-
-voting_pivoted
 ```
 
 ```{r}
@@ -287,28 +283,25 @@ wealth_plot <- voting_pivoted |>
     aes(x = wealth_perc, y = d_swing, fill = d_swing)) +
   geom_bar(stat = "identity") +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% Earning >$75,000/yr", y = "d_swing")
+  labs(title = "Bar Plot of Democratic Swing vs. Earnings", x = "% Earning >$75,000/yr", y = "d_swing")
 
 col_plot <- voting_pivoted |>
   ggplot(
     aes(x = col_attain, y = d_swing, fill = d_swing)) +
   geom_bar(stat = "identity") +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% with a Bachelor's Degree", y = "d_swing")
+  labs(title = "Bar Plot of Democratic Swing vs. College Attainment", x = "% with a Bachelor's Degree", y = "d_swing")
 
 white_plot <- voting_pivoted |>
   ggplot(
     aes(x = white_perc, y = d_swing, fill = d_swing)) +
   geom_bar(stat = "identity") +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(title = "Bar Plot of d_swing vs. wealth_perc", x = "% White non-Hispanic", y = "d_swing")
+  labs(title = "Bar Plot of d_swing vs. Racial Demographics", x = "% White non-Hispanic", y = "d_swing")
 
 wealth_plot
 col_plot
 white_plot
-
-
-knitr::kable(voting_pivoted)
 ```
 
 
