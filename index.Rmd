@@ -56,7 +56,7 @@ pres16ct <- pres16 |>
   select(county_name, county_fips, county_ansi, jurisdiction, precinct, candidate_normalized, writein, party, votes)
 ```
 
-```{r}
+```{r, results='hide'}
 #ACS estimates by precinct
 acs2020 <- read.csv("/Users/jackholland/Downloads/ACS2020.csv") |>
   select(Label..Grouping., ZCTA5.06824..Total..Estimate, ZCTA5.06825..Total..Estimate, ZCTA5.06890..Total..Estimate) |>
@@ -349,3 +349,15 @@ I also made the mistake of ignoring possible confounders such as political histo
 
 These mistakes understood, I still enjoyed the process of getting to better know my town's geography and political nuances. I hope I can use the skills applied here to model similar phenomena in the future, within political applications and outside of them. :)
 
+___
+
+Works Cited
+---
+
+Cook, Charlie. “Lots of Turnout, Little Ticket Splitting.” Cook Political Report, 10 Nov. 2020, www.cookpolitical.com/analysis/national/national-politics/lots-turnout-little-ticket-splitting. 
+
+MIT Election Data and Science Lab, 2018, "U.S. President Precinct-Level Returns 2016", https://doi.org/10.7910/DVN/LYWX3D, Harvard Dataverse, V11, UNF:6:hQyVqHW+vTFnAW2jYIOy/Q== [fileUNF]
+
+MIT Election Data and Science Lab, 2022, "U.S. President Precinct-Level Returns 2020", https://doi.org/10.7910/DVN/JXPREB, Harvard Dataverse, V4
+
+U.S. Census Bureau. "Selected Characteristics of the Total and Native Populations in the United States." American Community Survey, ACS 5-Year Estimates Subject Tables, Table S0601, 2022, https://data.census.gov/table/ACSST5Y2022.S0601?g=860XX00US06824,06825,06890https://data.census.gov/. Accessed on December 10, 2023.

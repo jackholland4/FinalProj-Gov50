@@ -1587,107 +1587,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>15</span><span class='op'>:</span><span class='fl'>25</span>, <span class='fl'>37</span><span class='op'>:</span><span class='fl'>53</span><span class='op'>)</span></span>
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>acs2020</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Demographics
-</th>
-<th style="text-align:left;">
-06824
-</th>
-<th style="text-align:left;">
-06825
-</th>
-<th style="text-align:left;">
-06890
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-    RACE AND HISPANIC OR LATINO ORIGIN
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-        One race
-</td>
-<td style="text-align:left;">
-97.0%
-</td>
-<td style="text-align:left;">
-95.1%
-</td>
-<td style="text-align:left;">
-97.3%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-            White
-</td>
-<td style="text-align:left;">
-91.4%
-</td>
-<td style="text-align:left;">
-86.2%
-</td>
-<td style="text-align:left;">
-90.5%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-            Black or African American
-</td>
-<td style="text-align:left;">
-0.6%
-</td>
-<td style="text-align:left;">
-1.6%
-</td>
-<td style="text-align:left;">
-0.9%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-            American Indian and Alaska Native
-</td>
-<td style="text-align:left;">
-0.0%
-</td>
-<td style="text-align:left;">
-0.0%
-</td>
-<td style="text-align:left;">
-0.0%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-            Asian
-</td>
-<td style="text-align:left;">
-3.8%
-</td>
-<td style="text-align:left;">
-5.4%
-</td>
-<td style="text-align:left;">
-5.5%
-</td>
-</tr>
-</tbody>
-</table>
 </div>
 <hr />
 <div class="layout-chunk" data-layout="l-body">
@@ -2448,6 +2347,12 @@ R2
 <p>If I were to rework this observational study, I would have sought a broader geographic base with more available demographic data. I was a real damper to this study not to be able to observe swings on the precinct level, as opposed to the ZIP code level. Perhaps if I did not have to nest the data into ZIP codes, there would be less instances of overfitting in the eventual regressions, as well as a more diverse array of swing and demographic data to model up above.</p>
 <p>I also made the mistake of ignoring possible confounders such as political history (if a population’s demographics indeed imply a democratic vote gain, why should I prioritize observing republican swing voters?) and turnout (not every ‘swing’ voter indeed voted in 2016). Again, seeking to pull more sources of data could have reduced this confounding bias.</p>
 <p>These mistakes understood, I still enjoyed the process of getting to better know my town’s geography and political nuances. I hope I can use the skills applied here to model similar phenomena in the future, within political applications and outside of them. :)</p>
+<hr />
+<h2 id="works-cited">Works Cited</h2>
+<p>Cook, Charlie. “Lots of Turnout, Little Ticket Splitting.” Cook Political Report, 10 Nov. 2020, www.cookpolitical.com/analysis/national/national-politics/lots-turnout-little-ticket-splitting.</p>
+<p>MIT Election Data and Science Lab, 2018, “U.S. President Precinct-Level Returns 2016”, <a href="https://doi.org/10.7910/DVN/LYWX3D" class="uri">https://doi.org/10.7910/DVN/LYWX3D</a>, Harvard Dataverse, V11, UNF:6:hQyVqHW+vTFnAW2jYIOy/Q== [fileUNF]</p>
+<p>MIT Election Data and Science Lab, 2022, “U.S. President Precinct-Level Returns 2020”, <a href="https://doi.org/10.7910/DVN/JXPREB" class="uri">https://doi.org/10.7910/DVN/JXPREB</a>, Harvard Dataverse, V4</p>
+<p>U.S. Census Bureau. “Selected Characteristics of the Total and Native Populations in the United States.” American Community Survey, ACS 5-Year Estimates Subject Tables, Table S0601, 2022, <a href="https://data.census.gov/table/ACSST5Y2022.S0601?g=860XX00US06824,06825,06890https://data.census.gov/" class="uri">https://data.census.gov/table/ACSST5Y2022.S0601?g=860XX00US06824,06825,06890https://data.census.gov/</a>. Accessed on December 10, 2023.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
